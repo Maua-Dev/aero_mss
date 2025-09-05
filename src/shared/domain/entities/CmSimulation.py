@@ -16,5 +16,27 @@ class CmSimulation:
     Cl_0: float #Coeficiente de Sustentação com Ângulo de Ataque Zero / Positivo ou zero.
     Cl_alpha: float #Inclinação da Curva de Sustentação (Lift Curve Slope) / É sempre positivo antes do estol(stall). Teoricamente, para um aerofólio 2D, é 2\pi por radiano. Para uma asa 3D finita, é sempre menor que 2\pi.
     
-    def __init__(self):
+    def __init__(self, 
+                 xcg: float, 
+                 xac_w: float, 
+                 sw: float, 
+                 st: float, 
+                 cw: float, 
+                 ct: float, 
+                 iw: float, 
+                 it: float, 
+                 lt: float, 
+                 cm_ac: float, 
+                 cl_0: float, 
+                 cl_alpha: float):
       pass
+
+    @staticmethod
+    def validate_xcg(xcg: float) -> bool:
+        if xcg is None:
+            return False
+        elif type(xcg) != float:
+            return False
+        elif xcg < -1 or xcg > 1:
+            return False
+        return True
