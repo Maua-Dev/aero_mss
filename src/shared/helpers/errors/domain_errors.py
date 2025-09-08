@@ -1,5 +1,4 @@
 from src.shared.helpers.errors.base_error import BaseError
-from src.shared.domain.entities.CmSimulation import CmSimulation
 
 class EntityError(BaseError):
     def __init__(self, message: str):
