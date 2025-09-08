@@ -1,4 +1,5 @@
 from src.shared.helpers.errors.domain_errors import EntityError
+from src.shared.helpers.errors.domain_errors import XcgError, XacWerror, SwError, StError, CwError, CtError, IwError, ItError, LtError, CmAcError, Cl0Error, ClAlphaError   
 
 class CmSimulation:
     #geometria
@@ -31,51 +32,51 @@ class CmSimulation:
                  cl_alpha: float):
         
         if not CmSimulation.validate_xcg(xcg):
-          raise EntityError("xcg")
+          raise XcgError(xcg)
         self.xcg = xcg
 
         if not CmSimulation.validate_xac_w(xac_w):
-          raise EntityError("xac_w")
+          raise XacWerror(xac_w)
         self.xac_w = xac_w
 
         if not CmSimulation.validate_sw(sw):
-          raise EntityError("sw")
+          raise SwError(sw)
         self.sw = sw
 
         if not CmSimulation.validate_st(st):
-            raise EntityError("st")
+            raise StError(st)
         self.st = st
 
         if not CmSimulation.validate_cw(cw):
-            raise EntityError("cw")
+            raise CwError(cw)
         self.cw = cw
 
         if not CmSimulation.validate_ct(ct):
-            raise EntityError("ct")
+            raise CtError(ct)
         self.ct = ct
 
         if not CmSimulation.validate_iw(iw):
-            raise EntityError("iw")
+            raise IwError(iw)
         self.iw = iw
 
         if not CmSimulation.validate_it(it):
-            raise EntityError("it")
+            raise ItError(it)
         self.it = it
 
         if not CmSimulation.validate_lt(lt):
-            raise EntityError("lt")
+            raise LtError(lt)
         self.lt = lt
 
         if not CmSimulation.validate_cm_ac(cm_ac):
-            raise EntityError("cm_ac")
+            raise CmAcError(cm_ac)
         self.cm_ac = cm_ac
 
         if not CmSimulation.validate_cl_0(cl_0):
-            raise EntityError("cl_0")
+            raise Cl0Error(cl_0)
         self.cl_0 = cl_0
 
         if not CmSimulation.validate_cl_alpha(cl_alpha):
-            raise EntityError("cl_alpha")
+            raise ClAlphaError(cl_alpha)
         self.cl_alpha = cl_alpha
 
 
