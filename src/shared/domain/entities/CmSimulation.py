@@ -32,51 +32,51 @@ class CmSimulation:
                  cl_alpha: float):
         
         if not CmSimulation.validate_xcg(xcg):
-          raise XcgError(xcg)
+          raise EntityError("xcg")
         self.xcg = xcg
 
         if not CmSimulation.validate_xac_w(xac_w):
-          raise XacWerror(xac_w)
+          raise EntityError("xac_w")
         self.xac_w = xac_w
 
         if not CmSimulation.validate_sw(sw):
-          raise SwError(sw)
+          raise EntityError("sw")
         self.sw = sw
 
         if not CmSimulation.validate_st(st):
-            raise StError(st)
+            raise EntityError("st")
         self.st = st
 
         if not CmSimulation.validate_cw(cw):
-            raise CwError(cw)
+            raise EntityError("cw")
         self.cw = cw
 
         if not CmSimulation.validate_ct(ct):
-            raise CtError(ct)
+            raise EntityError("ct")
         self.ct = ct
 
         if not CmSimulation.validate_iw(iw):
-            raise IwError(iw)
+            raise EntityError("iw")
         self.iw = iw
 
         if not CmSimulation.validate_it(it):
-            raise ItError(it)
+            raise EntityError("it")
         self.it = it
 
         if not CmSimulation.validate_lt(lt):
-            raise LtError(lt)
+            raise EntityError("lt")
         self.lt = lt
 
         if not CmSimulation.validate_cm_ac(cm_ac):
-            raise CmAcError(cm_ac)
+            raise EntityError("cm_ac")
         self.cm_ac = cm_ac
 
         if not CmSimulation.validate_cl_0(cl_0):
-            raise Cl0Error(cl_0)
+            raise EntityError("cl_0")
         self.cl_0 = cl_0
 
         if not CmSimulation.validate_cl_alpha(cl_alpha):
-            raise ClAlphaError(cl_alpha)
+            raise EntityError("cl_alpha")
         self.cl_alpha = cl_alpha
 
 
