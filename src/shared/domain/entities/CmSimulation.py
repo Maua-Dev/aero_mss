@@ -18,6 +18,7 @@ class CmSimulation:
     Cl_alpha: float #Inclinação da Curva de Sustentação (Lift Curve Slope) / É sempre positivo antes do estol(stall). Teoricamente, para um aerofólio 2D, é 2\pi por radiano. Para uma asa 3D finita, é sempre menor que 2\pi.
     
     def __init__(self, 
+                 simulation_id: str,
                  xcg: float, 
                  xac_w: float, 
                  sw: float, 
@@ -30,6 +31,10 @@ class CmSimulation:
                  cm_ac: float, 
                  cl_0: float, 
                  cl_alpha: float):
+        
+        if not CmSimulation.validate_simulation_id(simulation_id):
+            raise EntityError("simulation_id")
+        self.simulation_id = simulation_id
         
         if not CmSimulation.validate_xcg(xcg):
           raise EntityError("xcg")
@@ -82,6 +87,16 @@ class CmSimulation:
 
 # Validações
 
+    @staticmethod
+    def validate_simulation_id(simulation_id: str) -> bool:
+        if simulation_id is None:
+            return False
+        elif type(simulation_id) != str:
+            return False
+        elif len(simulation_id) == 0:
+            return False
+        return True
+    
     @staticmethod
     def validate_xcg(xcg: float) -> bool:
         if xcg is None:
