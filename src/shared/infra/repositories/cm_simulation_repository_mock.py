@@ -1,6 +1,6 @@
 from typing import List
 
-from src.shared.domain.entities.CmSimulation import CmSimulation
+from src.shared.domain.entities.cm_simulation import CmSimulation
 from src.shared.domain.enums.state_enum import STATE
 from src.shared.domain.repositories.cm_simulation_repository_interface import ICmSimulationRepository
 from src.shared.helpers.errors.usecase_errors import NoItemsFound
@@ -40,10 +40,21 @@ class CmSimulationRepositoryMock(ICmSimulationRepository):
                 return simulation
         raise NoItemsFound("No simulation found with the given ID")
 
-    def update_simulation(self, simulation_id: str, new_name: str) -> CmSimulation:
+    def update_simulation(self, simulation_id: str, new_xcg: float, new_xac_w: float, new_sw: float, new_st: float, new_cw: float, new_ct: float, new_iw: float, new_it: float, new_lt: float, new_Cm_ac: float, new_Cl_0: float, new_Cl_alpha: float) -> CmSimulation:
         for simulation in self.simulations:
             if simulation.id == simulation_id:
-                simulation.name = new_name
+                simulation.xcg = new_xcg
+                simulation.xac_w = new_xac_w
+                simulation.sw = new_sw
+                simulation.st = new_st
+                simulation.cw = new_cw
+                simulation.ct = new_ct
+                simulation.iw = new_iw
+                simulation.it = new_it
+                simulation.lt = new_lt
+                simulation.Cm_ac = new_Cm_ac
+                simulation.Cl_0 = new_Cl_0
+                simulation.Cl_alpha = new_Cl_alpha
                 return simulation
         raise NoItemsFound("No simulation found with the given ID")
 

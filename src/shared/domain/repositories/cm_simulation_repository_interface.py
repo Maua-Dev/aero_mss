@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import List
 
-from src.shared.domain.entities.CmSimulation import CmSimulation
+from src.shared.domain.entities.cm_simulation import CmSimulation
 
 
 class ICMSimulationRepository(ABC):
