@@ -12,15 +12,15 @@ class CmSimulationRepositoryMock(ICmSimulationRepository):
 
     def __init__(self):
         self.simulations = [
-            CmSimulation(simulation_id="1", xcg=0.5, xac_w=0.5, sw=1, st=1, cw=1, ct=1, iw=1, it=1, lt=1, Cm_ac=0.3, Cl_0=0.5, Cl_alpha=5),
-            CmSimulation(simulation_id="2", xcg=0.2, xac_w=0.3, sw=1, st=1, cw=1, ct=1, iw=1, it=1, lt=1, Cm_ac=0.4, Cl_0=0.3, Cl_alpha=5),
-            CmSimulation(simulation_id="3", xcg=0.3, xac_w=0.4, sw=1, st=1, cw=1, ct=1, iw=1, it=1, lt=1, Cm_ac=0.2, Cl_0=0.4, Cl_alpha=5)
+            CmSimulation(simulation_id="1", xcg=0.5, xac_w=0.5, sw=1.0, st=1.0, cw=1.0, ct=1.0, iw=1.0, it=1.0, lt=1.0, cm_ac=0.3, cl_0=0.5, cl_alpha=5.0),
+            CmSimulation(simulation_id="2", xcg=0.2, xac_w=0.3, sw=1.0, st=1.0, cw=1.0, ct=1.0, iw=1.0, it=1.0, lt=1.0, cm_ac=0.4, cl_0=0.3, cl_alpha=5.0),
+            CmSimulation(simulation_id="3", xcg=0.3, xac_w=0.4, sw=1.0, st=1.0, cw=1.0, ct=1.0, iw=1.0, it=1.0, lt=1.0, cm_ac=0.2, cl_0=0.4, cl_alpha=5.0)
         ]
-        self.simulation_counter = 0
+        self.simulation_counter = 3
 
     def get_simulation(self, simulation_id: str) -> CmSimulation:
         for simulation in self.simulations:
-            if simulation.id == simulation_id:
+            if simulation.simulation_id == simulation_id:
                 return simulation
         raise NoItemsFound("No simulation found with the given ID")
     
@@ -34,7 +34,7 @@ class CmSimulationRepositoryMock(ICmSimulationRepository):
 
     def delete_simulation(self, simulation_id: str) -> CmSimulation:
         for simulation in self.simulations:
-            if simulation.id == simulation_id:
+            if simulation.simulation_id == simulation_id:
                 self.simulations.remove(simulation)
                 self.simulation_counter -= 1
                 return simulation
@@ -42,7 +42,7 @@ class CmSimulationRepositoryMock(ICmSimulationRepository):
 
     def update_simulation(self, simulation_id: str, new_xcg: float, new_xac_w: float, new_sw: float, new_st: float, new_cw: float, new_ct: float, new_iw: float, new_it: float, new_lt: float, new_Cm_ac: float, new_Cl_0: float, new_Cl_alpha: float) -> CmSimulation:
         for simulation in self.simulations:
-            if simulation.id == simulation_id:
+            if simulation.simulation_id == simulation_id:
                 simulation.xcg = new_xcg
                 simulation.xac_w = new_xac_w
                 simulation.sw = new_sw
@@ -52,9 +52,9 @@ class CmSimulationRepositoryMock(ICmSimulationRepository):
                 simulation.iw = new_iw
                 simulation.it = new_it
                 simulation.lt = new_lt
-                simulation.Cm_ac = new_Cm_ac
-                simulation.Cl_0 = new_Cl_0
-                simulation.Cl_alpha = new_Cl_alpha
+                simulation.cm_ac = new_Cm_ac
+                simulation.cl_0 = new_Cl_0
+                simulation.cl_alpha = new_Cl_alpha
                 return simulation
         raise NoItemsFound("No simulation found with the given ID")
 

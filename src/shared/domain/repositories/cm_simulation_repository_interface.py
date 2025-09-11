@@ -4,7 +4,7 @@ from typing import List
 from src.shared.domain.entities.cm_simulation import CmSimulation
 
 
-class ICMSimulationRepository(ABC):
+class ICmSimulationRepository(ABC):
 
     @abstractmethod
     def get_simulation(self, simulation_id: str) -> CmSimulation:
