@@ -1,4 +1,5 @@
 from typing import List
+import uuid
 
 from src.shared.domain.entities.cm_simulation import CmSimulation
 from src.shared.domain.enums.state_enum import STATE
@@ -12,9 +13,9 @@ class CmSimulationRepositoryMock(ICmSimulationRepository):
 
     def __init__(self):
         self.simulations = [
-            CmSimulation(simulation_id="1", xcg=0.5, xac_w=0.5, sw=1.0, st=1.0, cw=1.0, ct=1.0, iw=1.0, it=1.0, lt=1.0, cm_ac=0.3, cl_0=0.5, cl_alpha=5.0),
-            CmSimulation(simulation_id="2", xcg=0.2, xac_w=0.3, sw=1.0, st=1.0, cw=1.0, ct=1.0, iw=1.0, it=1.0, lt=1.0, cm_ac=0.4, cl_0=0.3, cl_alpha=5.0),
-            CmSimulation(simulation_id="3", xcg=0.3, xac_w=0.4, sw=1.0, st=1.0, cw=1.0, ct=1.0, iw=1.0, it=1.0, lt=1.0, cm_ac=0.2, cl_0=0.4, cl_alpha=5.0)
+            CmSimulation(simulation_id=str(uuid.uuid4()), xcg=0.5, xac_w=0.5, sw=1.0, st=1.0, cw=1.0, ct=1.0, iw=1.0, it=1.0, lt=1.0, cm_ac=0.3, cl_0=0.5, cl_alpha=5.0),
+            CmSimulation(simulation_id=str(uuid.uuid4()), xcg=0.2, xac_w=0.3, sw=1.0, st=1.0, cw=1.0, ct=1.0, iw=1.0, it=1.0, lt=1.0, cm_ac=0.4, cl_0=0.3, cl_alpha=5.0),
+            CmSimulation(simulation_id=str(uuid.uuid4()), xcg=0.3, xac_w=0.4, sw=1.0, st=1.0, cw=1.0, ct=1.0, iw=1.0, it=1.0, lt=1.0, cm_ac=0.2, cl_0=0.4, cl_alpha=5.0)
         ]
         self.simulation_counter = 3
 

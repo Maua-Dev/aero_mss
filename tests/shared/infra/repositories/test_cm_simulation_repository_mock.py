@@ -2,14 +2,16 @@ from src.shared.domain.entities.cm_simulation import CmSimulation
 from src.shared.helpers.errors.usecase_errors import NoItemsFound
 from src.shared.infra.repositories.cm_simulation_repository_mock import CmSimulationRepositoryMock
 import pytest
+import uuid
 
 
 class Test_CmSimulationRepositoryMock:
     def test_get_simulation(self):
         repo = CmSimulationRepositoryMock()
-        simulation = repo.get_simulation("1")
+        first_simulation_id = repo.simulations[0].simulation_id
+        simulation = repo.get_simulation(first_simulation_id)
 
-        assert simulation.simulation_id == "1"
+        assert simulation.simulation_id == first_simulation_id
         assert simulation.xcg == 0.5
         assert simulation.xac_w == 0.5
         assert simulation.sw == 1.0
@@ -25,8 +27,9 @@ class Test_CmSimulationRepositoryMock:
 
     def test_get_simulation_not_found(self):
         repo = CmSimulationRepositoryMock()
+        non_existent_id = str(uuid.uuid4())
         with pytest.raises(NoItemsFound):
-            simulation = repo.get_simulation("69")
+            simulation = repo.get_simulation(non_existent_id)
 
     def test_get_all_simulations(self):
         repo = CmSimulationRepositoryMock()
@@ -36,7 +39,7 @@ class Test_CmSimulationRepositoryMock:
     def test_create_simulation(self):
         repo = CmSimulationRepositoryMock()
         simulation = CmSimulation(
-            simulation_id="4",
+            simulation_id=str(uuid.uuid4()),
             xcg=0.48,
             xac_w=0.42,
             sw=1.0,
@@ -53,7 +56,7 @@ class Test_CmSimulationRepositoryMock:
 
         repo.create_simulation(simulation)
 
-        assert repo.simulations[3].simulation_id == "4"
+        assert repo.simulations[3].simulation_id == simulation.simulation_id
         assert repo.simulations[3].xcg == 0.48
         assert repo.simulations[3].xac_w == 0.42
         assert repo.simulations[3].sw == 1.0
@@ -71,8 +74,9 @@ class Test_CmSimulationRepositoryMock:
 
     def test_delete_simulation(self):
         repo = CmSimulationRepositoryMock()
-        simulation = repo.delete_simulation("1")
-        assert simulation.simulation_id == "1"
+        first_simulation_id = repo.simulations[0].simulation_id
+        simulation = repo.delete_simulation(first_simulation_id)
+        assert simulation.simulation_id == first_simulation_id
         assert simulation.xcg == 0.5
         assert simulation.xac_w == 0.5
         assert simulation.sw == 1.0
@@ -88,12 +92,14 @@ class Test_CmSimulationRepositoryMock:
 
     def test_delete_simulation_not_found(self):
         repo = CmSimulationRepositoryMock()
+        non_existent_id = str(uuid.uuid4())
         with pytest.raises(NoItemsFound):
-            simulation = repo.delete_simulation("69")
+            simulation = repo.delete_simulation(non_existent_id)
 
     def test_update_simulation(self):
         repo = CmSimulationRepositoryMock()
-        simulation = repo.update_simulation("1", 0.6, 0.6, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.4, 0.6, 6.0)
+        first_simulation_id = repo.simulations[0].simulation_id
+        simulation = repo.update_simulation(first_simulation_id, 0.6, 0.6, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.4, 0.6, 6.0)
 
         assert simulation.xcg == 0.6
         assert simulation.xac_w == 0.6
@@ -110,8 +116,9 @@ class Test_CmSimulationRepositoryMock:
 
     def test_update_simulation_not_found(self):
         repo = CmSimulationRepositoryMock()
+        non_existent_id = str(uuid.uuid4())
         with pytest.raises(NoItemsFound):
-            simulation = repo.update_simulation("69", 0.6, 0.6, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.4, 0.6, 6.0)
+            simulation = repo.update_simulation(non_existent_id, 0.6, 0.6, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.4, 0.6, 6.0)
 
     def test_get_simulations_counter(self):
         repo = CmSimulationRepositoryMock()

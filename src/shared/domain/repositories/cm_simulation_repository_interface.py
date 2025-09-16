@@ -9,16 +9,22 @@ class ICmSimulationRepository(ABC):
     @abstractmethod
     def get_simulation(self, simulation_id: str) -> CmSimulation:
         """
-        If user not found raise NoItemsFound
+        If simulation not found raise NoItemsFound
         """
         pass
 
     @abstractmethod
     def get_all_simulations(self) -> List[CmSimulation]:
+        """
+        If simulations not found raise NoItemsFound
+        """
         pass
 
     @abstractmethod
     def create_simulation(self, new_simulation: CmSimulation) -> CmSimulation:
+        """
+        Creates a new simulation
+        """
         pass
 
     @abstractmethod
