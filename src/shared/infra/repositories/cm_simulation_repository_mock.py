@@ -4,7 +4,7 @@ import uuid
 from src.shared.domain.entities.cm_simulation import CmSimulation
 from src.shared.domain.enums.state_enum import STATE
 from src.shared.domain.repositories.cm_simulation_repository_interface import ICmSimulationRepository
-from src.shared.helpers.errors.usecase_errors import NoItemsFound
+from src.shared.helpers.errors.usecase_errors import NoItemsFound, DuplicatedItem
 
 
 class CmSimulationRepositoryMock(ICmSimulationRepository):
@@ -19,21 +19,26 @@ class CmSimulationRepositoryMock(ICmSimulationRepository):
         ]
         self.simulation_counter = 3
 
-    def get_simulation(self, simulation_id: str) -> CmSimulation:
+    def get_cm_simulation(self, simulation_id: str) -> CmSimulation:
         for simulation in self.simulations:
             if simulation.simulation_id == simulation_id:
                 return simulation
         raise NoItemsFound("No simulation found with the given ID")
     
-    def get_all_simulations(self) -> List[CmSimulation]:
+    def get_all_cm_simulations(self) -> List[CmSimulation]:
         return self.simulations
     
-    def create_simulation(self, new_simulation: CmSimulation) -> CmSimulation:
+    def create_cm_simulation(self, new_simulation: CmSimulation) -> CmSimulation:
+        
+        for simulation in self.simulations:
+            if simulation.simulation_id == new_simulation.simulation_id:
+                raise DuplicatedItem("SimulationID")
+        
         self.simulations.append(new_simulation)
         self.simulation_counter += 1
         return new_simulation
 
-    def delete_simulation(self, simulation_id: str) -> CmSimulation:
+    def delete_cm_simulation(self, simulation_id: str) -> CmSimulation:
         for simulation in self.simulations:
             if simulation.simulation_id == simulation_id:
                 self.simulations.remove(simulation)
@@ -41,7 +46,7 @@ class CmSimulationRepositoryMock(ICmSimulationRepository):
                 return simulation
         raise NoItemsFound("No simulation found with the given ID")
 
-    def update_simulation(self, simulation_id: str, new_xcg: float, new_xac_w: float, new_sw: float, new_st: float, new_cw: float, new_ct: float, new_iw: float, new_it: float, new_lt: float, new_Cm_ac: float, new_Cl_0: float, new_Cl_alpha: float) -> CmSimulation:
+    def update_cm_simulation(self, simulation_id: str, new_xcg: float, new_xac_w: float, new_sw: float, new_st: float, new_cw: float, new_ct: float, new_iw: float, new_it: float, new_lt: float, new_Cm_ac: float, new_Cl_0: float, new_Cl_alpha: float) -> CmSimulation:
         for simulation in self.simulations:
             if simulation.simulation_id == simulation_id:
                 simulation.xcg = new_xcg
@@ -59,5 +64,5 @@ class CmSimulationRepositoryMock(ICmSimulationRepository):
                 return simulation
         raise NoItemsFound("No simulation found with the given ID")
 
-    def get_simulation_counter(self) -> int:
+    def get_cm_simulation_counter(self) -> int:
         return self.simulation_counter
