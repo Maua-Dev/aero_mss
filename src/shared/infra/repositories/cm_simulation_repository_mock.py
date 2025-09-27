@@ -28,12 +28,7 @@ class CmSimulationRepositoryMock(ICmSimulationRepository):
     def get_all_cm_simulations(self) -> List[CmSimulation]:
         return self.simulations
     
-    def create_cm_simulation(self, new_simulation: CmSimulation) -> CmSimulation:
-        
-        for simulation in self.simulations:
-            if simulation.simulation_id == new_simulation.simulation_id:
-                raise DuplicatedItem("SimulationID")
-        
+    def create_cm_simulation(self, new_simulation: CmSimulation) -> CmSimulation:    
         self.simulations.append(new_simulation)
         self.simulation_counter += 1
         return new_simulation
