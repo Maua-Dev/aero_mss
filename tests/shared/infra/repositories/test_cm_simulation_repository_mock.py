@@ -1,5 +1,5 @@
 from src.shared.domain.entities.cm_simulation import CmSimulation
-from src.shared.helpers.errors.usecase_errors import NoItemsFound
+from src.shared.helpers.errors.usecase_errors import NoItemsFound, DuplicatedItem
 from src.shared.infra.repositories.cm_simulation_repository_mock import CmSimulationRepositoryMock
 import pytest
 import uuid
@@ -125,3 +125,23 @@ class Test_CmSimulationRepositoryMock:
 
         assert repo.get_cm_simulation_counter() == 3
 
+    def test_duplicated_cm_simulation_id(self):
+        repo = CmSimulationRepositoryMock()
+        simulation = CmSimulation(
+            simulation_id=repo.simulations[0].simulation_id,  
+            xcg=0.48,
+            xac_w=0.42,
+            sw=1.0,
+            st=1.0,
+            cw=1.0,
+            ct=1.0,
+            iw=1.0,
+            it=1.0,
+            lt=1.0,
+            cm_ac=0.31,
+            cl_0=0.43,
+            cl_alpha=5.0
+        )
+
+        with pytest.raises(DuplicatedItem):
+            repo.create_cm_simulation(simulation)

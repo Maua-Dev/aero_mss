@@ -61,3 +61,4 @@ class CmSimulationRepositoryMock(ICmSimulationRepository):
 
     def get_cm_simulation_counter(self) -> int:
         return self.simulation_counter
+    
