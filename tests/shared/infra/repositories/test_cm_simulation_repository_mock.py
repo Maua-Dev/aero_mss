@@ -125,10 +125,11 @@ class Test_CmSimulationRepositoryMock:
 
         assert repo.get_cm_simulation_counter() == 3
 
-    def test_duplicated_cm_simulation_id(self):
+    def test_create_duplicated_cm_simulation(self):
         repo = CmSimulationRepositoryMock()
+        existing_simulation_id = repo.simulations[0].simulation_id
         simulation = CmSimulation(
-            simulation_id=repo.simulations[0].simulation_id,  
+            simulation_id=existing_simulation_id,  
             xcg=0.48,
             xac_w=0.42,
             sw=1.0,
