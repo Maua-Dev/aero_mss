@@ -31,7 +31,7 @@ class CmSimulationRepositoryMock(ICmSimulationRepository):
     def create_cm_simulation(self, new_simulation: CmSimulation) -> CmSimulation:
         for simulation in self.simulations:
             if simulation.simulation_id == new_simulation.simulation_id:
-                raise DuplicatedItem("A simulation with this ID already exists")
+                raise DuplicatedItem("Simulation ID")
         
         self.simulations.append(new_simulation)
         self.simulation_counter += 1
