@@ -1,4 +1,4 @@
-from src.shared.domain.entities.CmSimulation import CmSimulation
+from src.shared.domain.entities.cm_simulation import CmSimulation
 from src.shared.helpers.errors.domain_errors import EntityError
 import pytest
 
