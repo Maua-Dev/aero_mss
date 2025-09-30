@@ -4,14 +4,14 @@ import os
 import aws_cdk as cdk
 from adjust_layer_directory import adjust_layer_directory
 
-from iac.template_stack import TemplateStack
+from iac.stack.iac_stack import TemplateStack
 
 
 
 print("Starting the CDK")
 
 print("Adjusting the layer directory")
-adjust_layer_directory(shared_dir_name="shared", destination="lambda_layer_out_temp")
+adjust_layer_directory()
 print("Finished adjusting the layer directory")
 
 
@@ -34,13 +34,13 @@ else:
     stage = 'TEST'
 
 tags = {
-    'project': 'Template',
+    'project': 'AeroMss',
     'stage': stage,
     'stack': 'BACK',
     'owner': 'DevCommunity'
 }
 
-TemplateStack(app, stack_name=stack_name, env=cdk.Environment(account=aws_account_id, region=aws_region), tags=tags)
+TemplateStack(app, construct_id=stack_name, env=cdk.Environment(account=aws_account_id, region=aws_region), tags=tags)
 
 
 app.synth()
