@@ -11,14 +11,14 @@ from components.lambda_construct import LambdaConstruct
 from components.dynamo_construct import DynamoConstruct
 
 
-class TemplateStack(Stack):
+class IacStack(Stack):
 
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
-        self.rest_api = RestApi(self, "Template_RestApi",
-                                    rest_api_name="Template_RestApi",
-                                    description="This is the Template RestApi",
+        self.rest_api = RestApi(self, "AeroMss_RestApi",
+                                    rest_api_name="AeroMss_RestApi",
+                                    description="This is the AeroMss RestApi",
                                     default_cors_preflight_options=
                                     {
                                         "allow_origins": Cors.ALL_ORIGINS,
@@ -27,7 +27,7 @@ class TemplateStack(Stack):
                                     },
                                 )
 
-        api_gateway_resource = self.rest_api.root.add_resource("mss-template", default_cors_preflight_options=
+        api_gateway_resource = self.rest_api.root.add_resource("mss-aero", default_cors_preflight_options=
         {
             "allow_origins": Cors.ALL_ORIGINS,
             "allow_methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],

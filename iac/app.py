@@ -4,7 +4,7 @@ import os
 import aws_cdk as cdk
 from adjust_layer_directory import adjust_layer_directory
 
-from iac.stack.iac_stack import TemplateStack
+from iac.stack.iac_stack import IacStack
 
 
 
@@ -40,7 +40,7 @@ tags = {
     'owner': 'DevCommunity'
 }
 
-TemplateStack(app, construct_id=stack_name, env=cdk.Environment(account=aws_account_id, region=aws_region), tags=tags)
+IacStack(app, construct_id=stack_name, env=cdk.Environment(account=aws_account_id, region=aws_region), tags=tags)
 
 
 app.synth()
