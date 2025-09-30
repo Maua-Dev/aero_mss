@@ -15,6 +15,8 @@ class IacStack(Stack):
 
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
+        
+        stage = kwargs['tags']['stage']
 
         self.rest_api = RestApi(self, "AeroMss_RestApi",
                                     rest_api_name="AeroMss_RestApi",
@@ -25,6 +27,9 @@ class IacStack(Stack):
                                         "allow_methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
                                         "allow_headers": ["*"]
                                     },
+                                    deploy_options={
+                                        "stage_name": stage.lower()
+                                    }
                                 )
 
         api_gateway_resource = self.rest_api.root.add_resource("mss-aero", default_cors_preflight_options=
@@ -36,15 +41,6 @@ class IacStack(Stack):
                                                                )
 
         self.dynamo_table = DynamoConstruct(self, "AeroMss_DynamoDB")
-        
-        stack_name = os.environ.get("STACK_NAME")
-        stage = ''
-        if 'prod' in stack_name.lower():
-            stage = 'PROD'            
-        elif 'homolog' in stack_name.lower():
-            stage = 'HOMOLOG'
-        else:
-            stage = 'DEV'
 
         ENVIRONMENT_VARIABLES = {
             "STAGE": stage,
