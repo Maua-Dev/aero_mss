@@ -3,7 +3,7 @@ from .get_user_usecase import GetUserUsecase
 from src.shared.environments import Environments
 from src.shared.helpers.external_interfaces.http_lambda_requests import LambdaHttpRequest, LambdaHttpResponse
 from src.shared.infra.external.observability.observability_aws import ObservabilityAWS
-from aws_lambda_powertools import Logger, Tracer, Metrics
+#from aws_lambda_powertools import Logger, Tracer, Metrics
 
 
 observability = Environments.get_observability()(module_name="get_user")
