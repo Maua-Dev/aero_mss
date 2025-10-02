@@ -1,6 +1,6 @@
-from src.shared.domain.entities.cm_simulation import CMSimulation
+from src.shared.domain.entities.cm_simulation import CmSimulation
 
-class CMSimulationDynamoDTO:
+class CmSimulationDynamoDTO:
     simulation_id: str
     Xcg: float
     Xac_w: float
@@ -31,11 +31,11 @@ class CMSimulationDynamoDTO:
         self.cl_alpha = cl_alpha
 
     @staticmethod
-    def from_entity(cm_simulation: CMSimulation) -> "CMSimulationDynamoDTO":
+    def from_entity(cm_simulation: CmSimulation) -> "CmSimulationDynamoDTO":
         """
         Parse data from CMSimulation to CMSimulationDynamoDTO
         """
-        return CMSimulationDynamoDTO(
+        return CmSimulationDynamoDTO(
             simulation_id=cm_simulation.simulation_id,
             xcg=cm_simulation.xcg,
             xac_w=cm_simulation.xac_w,
@@ -73,12 +73,12 @@ class CMSimulationDynamoDTO:
         }
     
     @staticmethod
-    def from_dynamo(cm_simulation_data: dict) -> "CMSimulationDynamoDTO ":
+    def from_dynamo(cm_simulation_data: dict) -> "CmSimulationDynamoDTO ":
         """
         Parse data from DynamoDB to CMSimulationDynamoDTO
         @param cm_simulation_data: dict from DynamoDB
         """
-        return CMSimulationDynamoDTO(
+        return CmSimulationDynamoDTO(
             simulation_id=str(cm_simulation_data["simulation_id"]),
             xcg=float(cm_simulation_data["xcg"]),
             xac_w=float(cm_simulation_data["xac_w"]),
@@ -94,11 +94,11 @@ class CMSimulationDynamoDTO:
             cl_alpha=float(cm_simulation_data["cl_alpha"])
         )
     
-    def to_entity(self) -> CMSimulation:
+    def to_entity(self) -> CmSimulation:
         """
         Parse data from CMSimulationDynamoDTO to CMSimulation
         """
-        return CMSimulation(
+        return CmSimulation(
             simulation_id=self.simulation_id,
             xcg=self.xcg,
             xac_w=self.xac_w,
