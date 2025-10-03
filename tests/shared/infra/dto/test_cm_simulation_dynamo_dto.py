@@ -1,5 +1,6 @@
 from src.shared.infra.dto.cm_simulation_dynamo_dto import CmSimulationDynamoDTO
 from src.shared.infra.repositories.cm_simulation_repository_mock import CmSimulationRepositoryMock
+from src.shared.domain.entities.cm_simulation import CmSimulation
 
 class Test_CMSimulationDynamoDto:
     def test_from_entity(self):
@@ -66,15 +67,15 @@ class Test_CMSimulationDynamoDto:
         assert cm_simulation_dto.to_dynamo() == expected_dict
 
     def test_from_dynamo(self):
-        dynamo_dict = {'Item': {'simulation_id': 'sim_1',
+        dynamo_dict = {'Simulation': {'simulation_id': 'sim_1',
                                 'xcg': 0.25,
                                 'xac_w': 0.2,
                                 'sw': 1.0,
                                 'st': 0.33,
                                 'cw': 0.5,
                                 'ct': 0.33,
-                                'iw': 0.03490658503988659,
-                                'it': -0.05235987755982989,
+                                'iw': 0.034,
+                                'it': -0.052,
                                 'lt': 0.75,
                                 'cm_ac': -0.27,
                                 'cl_0': 0.743,
@@ -89,7 +90,7 @@ class Test_CMSimulationDynamoDto:
                                                             'server': 'Jetty(9.4.48.v20220622)'},
                                             'RetryAttempts': 0}}}
 
-        cm_simulation_dto = CmSimulationDynamoDTO.from_dynamo(cm_simulation_data=dynamo_dict["Item"])
+        cm_simulation_dto = CmSimulationDynamoDTO.from_dynamo(cm_simulation_data=dynamo_dict["Simulation"])
 
         expected_cm_simulation_dto = CmSimulationDynamoDTO(
             simulation_id="sim_1",
@@ -99,8 +100,8 @@ class Test_CMSimulationDynamoDto:
             st=0.33,
             cw=0.5,
             ct=0.33,
-            iw=0.03490658503988659,
-            it=-0.05235987755982989,
+            iw=0.034,
+            it=-0.052,
             lt=0.75,
             cm_ac=-0.27,
             cl_0=0.743,
@@ -144,4 +145,51 @@ class Test_CMSimulationDynamoDto:
         assert cm_simulation.cl_0 == repo.simulations[0].cl_0
         assert cm_simulation.cl_alpha == repo.simulations[0].cl_alpha
 
+    def test_from_dynamo_to_entity(self):
+        dynamo_simulation = {'Simulation': {'simulation_id': 'sim_1',
+                                'xcg': 0.25,
+                                'xac_w': 0.2,
+                                'sw': 1.0,
+                                'st': 0.33,
+                                'cw': 0.5,
+                                'ct': 0.33,
+                                'iw': 0.034,
+                                'it': -0.052,
+                                'lt': 0.75,
+                                'cm_ac': -0.27,
+                                'cl_0': 0.743,
+                                'cl_alpha': 3.558}}
         
+        cm_simulation_dto = CmSimulationDynamoDTO.from_dynamo(cm_simulation_data=dynamo_simulation["Simulation"])
+
+        cm_simulation = cm_simulation_dto.to_entity()
+
+        expected_cm_simulation = CmSimulation(
+            simulation_id="simulation_1",
+            xcg=0.25,
+            xac_w=0.2, 
+            sw=1.0,
+            st=0.33,
+            cw=0.5,
+            ct=0.33,
+            iw=0.034,
+            it=-0.052,
+            lt=0.75,
+            cm_ac=-0.27,
+            cl_0=0.743,
+            cl_alpha=3.558
+        )
+
+        assert cm_simulation.simulation_id == expected_cm_simulation.simulation_id
+        assert cm_simulation.xcg == expected_cm_simulation.xcg
+        assert cm_simulation.xac_w == expected_cm_simulation.xac_w
+        assert cm_simulation.sw == expected_cm_simulation.sw
+        assert cm_simulation.st == expected_cm_simulation.st
+        assert cm_simulation.cw == expected_cm_simulation.cw
+        assert cm_simulation.ct == expected_cm_simulation.ct
+        assert cm_simulation.iw == expected_cm_simulation.iw
+        assert cm_simulation.it == expected_cm_simulation.it
+        assert cm_simulation.lt == expected_cm_simulation.lt
+        assert cm_simulation.cm_ac == expected_cm_simulation.cm_ac
+        assert cm_simulation.cl_0 == expected_cm_simulation.cl_0
+        assert cm_simulation.cl_alpha == expected_cm_simulation.cl_alpha
