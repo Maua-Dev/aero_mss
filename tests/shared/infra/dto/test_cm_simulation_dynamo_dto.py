@@ -1,15 +1,17 @@
 from src.shared.infra.dto.cm_simulation_dynamo_dto import CmSimulationDynamoDTO
 from src.shared.infra.repositories.cm_simulation_repository_mock import CmSimulationRepositoryMock
 from src.shared.domain.entities.cm_simulation import CmSimulation
+import uuid
 
 class Test_CMSimulationDynamoDto:
     def test_from_entity(self):
         repo = CmSimulationRepositoryMock()
-
+        simulation_id_esperado = repo.simulations[0].simulation_id  
+        simulation = repo.get_cm_simulation(simulation_id_esperado) 
         cm_simulation_dto = CmSimulationDynamoDTO.from_entity(cm_simulation=repo.simulations[0])
 
         expected_cm_simulation_dto = CmSimulationDynamoDTO(
-            simulation_id=repo.simulations[0].simulation_id,
+            simulation_id=simulation_id_esperado,
             xcg=repo.simulations[0].xcg,
             xac_w=repo.simulations[0].xac_w,
             sw=repo.simulations[0].sw,
@@ -28,9 +30,10 @@ class Test_CMSimulationDynamoDto:
 
     def test_to_dynamo(self):
         repo = CmSimulationRepositoryMock()
-
+        simulation_id_esperado = repo.simulations[0].simulation_id  
+        simulation = repo.get_cm_simulation(simulation_id_esperado) 
         cm_simulation_dto = CmSimulationDynamoDTO(
-            simulation_id=repo.simulations[0].simulation_id,
+            simulation_id=simulation_id_esperado,
             xcg=repo.simulations[0].xcg,
             xac_w=repo.simulations[0].xac_w,
             sw=repo.simulations[0].sw,
@@ -49,7 +52,7 @@ class Test_CMSimulationDynamoDto:
 
         expected_dict = {
             "entity": "cm_simulation",
-            "simulation_id": repo.simulations[0].simulation_id,
+            "simulation_id": simulation_id_esperado,
             "xcg": repo.simulations[0].xcg,
             "xac_w": repo.simulations[0].xac_w,
             "sw": repo.simulations[0].sw,
@@ -67,7 +70,10 @@ class Test_CMSimulationDynamoDto:
         assert cm_simulation_dto.to_dynamo() == expected_dict
 
     def test_from_dynamo(self):
-        dynamo_dict = {'Simulation': {'simulation_id': 'simulation_1',
+        repo = CmSimulationRepositoryMock()
+        simulation_id_esperado = repo.simulations[0].simulation_id  
+        simulation = repo.get_cm_simulation(simulation_id_esperado) 
+        dynamo_dict = {'Simulation': {'simulation_id': simulation_id_esperado,
                                 'xcg': 0.5,
                                 'xac_w': 0.5,
                                 'sw': 1.0,
@@ -93,7 +99,7 @@ class Test_CMSimulationDynamoDto:
         cm_simulation_dto = CmSimulationDynamoDTO.from_dynamo(cm_simulation_data=dynamo_dict["Simulation"])
 
         expected_cm_simulation_dto = CmSimulationDynamoDTO(
-            simulation_id="simulation_1",
+            simulation_id=simulation_id_esperado,
             xcg=0.5, 
             xac_w=0.5, 
             sw=1.0, 
@@ -112,9 +118,10 @@ class Test_CMSimulationDynamoDto:
 
     def test_to_entity(self):
         repo = CmSimulationRepositoryMock()
-
+        simulation_id_esperado = repo.simulations[0].simulation_id  
+        simulation = repo.get_cm_simulation(simulation_id_esperado) 
         cm_simulation_dto = CmSimulationDynamoDTO(
-            simulation_id=repo.simulations[0].simulation_id,
+            simulation_id=simulation_id_esperado,
             xcg=repo.simulations[0].xcg,
             xac_w=repo.simulations[0].xac_w,
             sw=repo.simulations[0].sw,
@@ -131,7 +138,7 @@ class Test_CMSimulationDynamoDto:
         
         cm_simulation = cm_simulation_dto.to_entity()
 
-        assert cm_simulation.simulation_id == repo.simulations[0].simulation_id
+        assert cm_simulation.simulation_id == simulation_id_esperado
         assert cm_simulation.xcg == repo.simulations[0].xcg
         assert cm_simulation.xac_w == repo.simulations[0].xac_w
         assert cm_simulation.sw == repo.simulations[0].sw
@@ -146,7 +153,10 @@ class Test_CMSimulationDynamoDto:
         assert cm_simulation.cl_alpha == repo.simulations[0].cl_alpha
 
     def test_from_dynamo_to_entity(self):
-        dynamo_simulation = {'Simulation': {'simulation_id': 'simulation_1',
+        repo = CmSimulationRepositoryMock()
+        simulation_id_esperado = repo.simulations[0].simulation_id  
+        simulation = repo.get_cm_simulation(simulation_id_esperado) 
+        dynamo_simulation = {'Simulation': {'simulation_id': simulation_id_esperado,
                                 'xcg': 0.5,
                                 'xac_w': 0.5,
                                 'sw': 1.0,
@@ -165,7 +175,7 @@ class Test_CMSimulationDynamoDto:
         cm_simulation = cm_simulation_dto.to_entity()
 
         expected_cm_simulation = CmSimulation(
-            simulation_id="simulation_1",
+            simulation_id=simulation_id_esperado,
             xcg=0.5, 
             xac_w=0.5, 
             sw=1.0, 
@@ -196,6 +206,8 @@ class Test_CMSimulationDynamoDto:
 
     def test_from_entity_to_dynamo(self):
         repo = CmSimulationRepositoryMock()
+        simulation_id_esperado = repo.simulations[0].simulation_id  
+        simulation = repo.get_cm_simulation(simulation_id_esperado) 
 
         cm_simulation_dto = CmSimulationDynamoDTO.from_entity(cm_simulation=repo.simulations[0])
 
@@ -203,7 +215,7 @@ class Test_CMSimulationDynamoDto:
 
         expected_dict = {
             "entity": "cm_simulation",
-            "simulation_id": repo.simulations[0].simulation_id,
+            "simulation_id": simulation_id_esperado,
             "xcg": repo.simulations[0].xcg,
             "xac_w": repo.simulations[0].xac_w,
             "sw": repo.simulations[0].sw,
