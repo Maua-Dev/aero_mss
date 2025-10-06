@@ -1,8 +1,10 @@
 from src.shared.helpers.errors.domain_errors import EntityError
 from src.shared.helpers.errors.domain_errors import XcgError, XacWerror, SwError, StError, CwError, CtError, IwError, ItError, LtError, CmAcError, Cl0Error, ClAlphaError   
+import uuid
 
 class CmSimulation:
-    #geometria
+    #geometria 
+    simulation_id: str #Identificador único da simulação
     Xcg: float #Posição do Centro de Gravidade (CG) / Positivo ou negativo (0,25 = 25% da corda)
     Xac_w: float #Posição do Centro Aerodinâmico (AC) / Valor positivo e fixo
     Sw: float #Área da Asa (m²) / Deve ser um valor positivo.
@@ -95,6 +97,8 @@ class CmSimulation:
             return False
         elif len(simulation_id) == 0:
             return False
+        elif len(simulation_id) != 36:
+            return False     
         return True
     
     @staticmethod

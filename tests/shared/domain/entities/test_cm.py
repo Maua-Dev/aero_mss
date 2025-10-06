@@ -1,11 +1,12 @@
 from src.shared.domain.entities.cm_simulation import CmSimulation
 from src.shared.helpers.errors.domain_errors import EntityError
 import pytest
+import uuid
 
 class Test_CmSimulation:
     def test_cm_simulation(self):
         CmSimulation(
-            simulation_id="01",
+            simulation_id=str(uuid.uuid4()),
             xcg=0.25,
             xac_w=0.9,
             sw=0.5,
@@ -59,7 +60,7 @@ class Test_CmSimulation:
     def test_cm_simulation_xcg_is_none(self):
         with pytest.raises(EntityError):
             CmSimulation(
-                simulation_id="01",
+                simulation_id=str(uuid.uuid4()),
                 xcg=None,
                 xac_w=0.9,
                 sw=0.5,
@@ -77,7 +78,7 @@ class Test_CmSimulation:
     def test_cm_simulation_xcg_is_not_float(self):
         with pytest.raises(EntityError):
             CmSimulation(
-                simulation_id="01",
+                simulation_id=str(uuid.uuid4()),
                 xcg="0.25",
                 xac_w=0.9,
                 sw=0.5,
