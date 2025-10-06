@@ -92,3 +92,21 @@ class Test_CmSimulation:
                 cl_0=0.0,
                 cl_alpha=3.5
             )
+
+    def test_cm_simulation_simulation_id_is_not_36(self):
+        with pytest.raises(EntityError):
+            CmSimulation(
+                simulation_id="43",
+                xcg=0.25,
+                xac_w=0.9,
+                sw=0.5,
+                st=0.5,
+                cw=2.0,
+                ct=1.0,
+                iw=1.0,
+                it=2.0,
+                lt=3.0,
+                cm_ac=-0.05,
+                cl_0=0.0,
+                cl_alpha=3.5
+            )
