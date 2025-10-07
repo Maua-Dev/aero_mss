@@ -98,7 +98,13 @@ class CmSimulation:
         elif len(simulation_id) == 0:
             return False
         elif len(simulation_id) != 36:
-            return False     
+            return False    
+        def uuid_is_valid(simulation_id: str) -> bool:
+            try:
+                uuid_obj = uuid.UUID(simulation_id, version=4)
+            except ValueError:
+                return False
+            return str(uuid_obj) == simulation_id
         return True
     
     @staticmethod
