@@ -5,9 +5,10 @@ from src.shared.helpers.errors.controller_errors import MissingParameters, Wrong
 from src.shared.helpers.errors.domain_errors import EntityError
 from src.shared.helpers.external_interfaces.http_codes import OK, NotFound, BadRequest, InternalServerError, Created
 
-class CreateCMSimulationController:
+class CreateCmSimulationController:
     def __init__(self, usecase: CreateCmSimulationUsecase):
-        self.CreateCmSimulationUsecase = usecase
+        # store usecase with a simple name and use it consistently
+        self.usecase = usecase
 
     def __call__(self, request: IRequest) -> IResponse:
         try:
@@ -38,7 +39,7 @@ class CreateCMSimulationController:
             if request.data.get('cl_alpha') is None:
                 raise MissingParameters('cl_alpha')
             
-            simulation = self.CreateCMSimulationUsecase(
+            simulation = self.usecase(
                 simulation_id=request.data.get('simulation_id'),
                 xcg=request.data.get('xcg'),
                 xac_w=request.data.get('xac_w'),
@@ -59,20 +60,14 @@ class CreateCMSimulationController:
             return Created(viewmodel.to_dict())
 
         except MissingParameters as err:
-
             return BadRequest(body=err.message)
 
         except WrongTypeParameter as err:
-
             return BadRequest(body=err.message)
 
         except EntityError as err:
-
             return BadRequest(body=err.message)
 
         except Exception as err:
-            
             print(err)
-
             return InternalServerError(body=err.args[0])
-        

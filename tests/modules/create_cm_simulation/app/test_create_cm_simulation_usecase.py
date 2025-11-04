@@ -34,7 +34,7 @@ class Test_CreateCmSimulationUsecase:
         with pytest.raises(EntityError):
             simulation = usecase(
                 simulation_id=id_esperado,
-                xcg="0.1",
+                xcg='0.4',
                 xac_w=0.4,
                 sw=1.0,
                 st=1.0,
