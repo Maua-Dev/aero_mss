@@ -2,7 +2,7 @@ from src.shared.domain.entities.cm_simulation import CmSimulation
 from src.shared.domain.repositories.cm_simulation_repository_interface import ICMSimulationRepository
 from src.shared.helpers.errors.domain_errors import EntityError
 
-class CreateCMSimulationUsecase:
+class CreateCmSimulationUsecase:
     def __init__(self, repo: ICMSimulationRepository):
         self.repo = repo
 

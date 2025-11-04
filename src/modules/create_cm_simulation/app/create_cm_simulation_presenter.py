@@ -1,11 +1,11 @@
-from .create_cm_simulation_controller import CreateCMSimulationController
-from .create_cm_simulation_usecase import CreateCMSimulationUsecase
+from .create_cm_simulation_controller import CreateCmSimulationController
+from .create_cm_simulation_usecase import CreateCmSimulationUsecase
 from src.shared.environments import Environments
 from src.shared.helpers.external_interfaces.http_lambda_requests import LambdaHttpRequest, LambdaHttpResponse
 
 repo = Environments.get_cm_simulation_repo()()
-usecase = CreateCMSimulationUsecase(repo)
-controller = CreateCMSimulationController(usecase)
+usecase = CreateCmSimulationUsecase(repo)
+controller = CreateCmSimulationController(usecase)
 
 def lambda_handler(event, context):
 

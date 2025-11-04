@@ -1,13 +1,13 @@
 from src.shared.helpers.external_interfaces.external_interface import IResponse, IRequest
-from .create_cm_simulation_usecase import CreateCMSimulationUsecase
-from .create_cm_simulation_viewmodel import CreateCMSimulationViewmodel 
+from .create_cm_simulation_usecase import CreateCmSimulationUsecase
+from .create_cm_simulation_viewmodel import CreateCmSimulationViewmodel 
 from src.shared.helpers.errors.controller_errors import MissingParameters, WrongTypeParameter
 from src.shared.helpers.errors.domain_errors import EntityError
 from src.shared.helpers.external_interfaces.http_codes import OK, NotFound, BadRequest, InternalServerError, Created
 
 class CreateCMSimulationController:
-    def __init__(self, usecase: CreateCMSimulationUsecase):
-        self.CreateCMSimulationUsecase = usecase
+    def __init__(self, usecase: CreateCmSimulationUsecase):
+        self.CreateCmSimulationUsecase = usecase
 
     def __call__(self, request: IRequest) -> IResponse:
         try:
@@ -54,7 +54,7 @@ class CreateCMSimulationController:
                 cl_alpha=request.data.get('cl_alpha')
             )
             
-            viewmodel = CreateCMSimulationViewmodel(simulation)
+            viewmodel = CreateCmSimulationViewmodel(simulation)
             
             return Created(viewmodel.to_dict())
 

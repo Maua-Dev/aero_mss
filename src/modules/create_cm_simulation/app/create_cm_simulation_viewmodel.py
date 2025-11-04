@@ -1,6 +1,6 @@
-from src.shared.domain.entities.cm_simulation import CMSimulation
+from src.shared.domain.entities.cm_simulation import CmSimulation
 
-class CreateCMSimulationViewmodel:
+class CreateCmSimulationViewmodel:
     simulation_id: str
     xcg: float
     xac_w: float
@@ -15,7 +15,7 @@ class CreateCMSimulationViewmodel:
     cl_0: float
     cl_alpha: float
 
-    def __init__(self, cm_simulation: CMSimulation):
+    def __init__(self, cm_simulation: CmSimulation):
         self.simulation_id = cm_simulation.simulation_id
         self.xcg = cm_simulation.xcg
         self.xac_w = cm_simulation.xac_w
