@@ -1,9 +1,9 @@
 from src.shared.domain.entities.cm_simulation import CmSimulation
-from src.shared.domain.repositories.cm_simulation_repository_interface import ICMSimulationRepository
+from src.shared.domain.repositories.cm_simulation_repository_interface import ICmSimulationRepository
 from src.shared.helpers.errors.domain_errors import EntityError
 
 class CreateCmSimulationUsecase:
-    def __init__(self, repo: ICMSimulationRepository):
+    def __init__(self, repo: ICmSimulationRepository):
         self.repo = repo
 
     def __call__(self, 
