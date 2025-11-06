@@ -34,7 +34,7 @@ class Test_CreateCmSimulationViewModel:
                 'iw': 1.0,
                 'it': 2.0,
                 'lt': 3.0,
-                'cm_ac': -0.35,
+                'cm_ac': -0.05,
                 'cl_0': 0.0,
                 'cl_alpha': 3.5
             },
