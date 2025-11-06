@@ -12,47 +12,61 @@ class CreateCmSimulationController:
 
     def __call__(self, request: IRequest) -> IResponse:
         try:
-            if request.data.get('simulation_id') is None:
+            simulation_id = request.data.get('simulation_id')
+            xcg = request.data.get('xcg', None)
+            xac_w = request.data.get('xac_w', None)
+            sw = request.data.get('sw', None)
+            st = request.data.get('st', None)
+            cw = request.data.get('cw', None)
+            ct = request.data.get('ct', None)
+            iw = request.data.get('iw', None)
+            it = request.data.get('it', None)
+            lt = request.data.get('lt', None)
+            cm_ac = request.data.get('cm_ac', None)
+            cl_0 = request.data.get('cl_0', None)
+            cl_alpha = request.data.get('cl_alpha', None)
+
+            if simulation_id is None:
                 raise MissingParameters('simulation_id')
-            if request.data.get('xcg') is None:
+            if xcg is None:
                 raise MissingParameters('xcg')
-            if request.data.get('xac_w') is None:
+            if xac_w is None:
                 raise MissingParameters('xac_w')
-            if request.data.get('sw') is None:
+            if sw is None:
                 raise MissingParameters('sw')
-            if request.data.get('st') is None:
+            if st is None:
                 raise MissingParameters('st')
-            if request.data.get('cw') is None:
+            if cw is None:
                 raise MissingParameters('cw')
-            if request.data.get('ct') is None:
+            if ct is None:
                 raise MissingParameters('ct')
-            if request.data.get('iw') is None:
+            if iw is None:
                 raise MissingParameters('iw')
-            if request.data.get('it') is None:
+            if it is None:
                 raise MissingParameters('it')
-            if request.data.get('lt') is None:
+            if lt is None:
                 raise MissingParameters('lt')
-            if request.data.get('cm_ac') is None:
+            if cm_ac is None:
                 raise MissingParameters('cm_ac')
-            if request.data.get('cl_0') is None:
+            if cl_0 is None:
                 raise MissingParameters('cl_0')
-            if request.data.get('cl_alpha') is None:
+            if cl_alpha is None:
                 raise MissingParameters('cl_alpha')
             
             simulation = self.usecase(
-                simulation_id=request.data.get('simulation_id'),
-                xcg=request.data.get('xcg'),
-                xac_w=request.data.get('xac_w'),
-                sw=request.data.get('sw'),
-                st=request.data.get('st'), 
-                cw=request.data.get('cw'),
-                ct=request.data.get('ct'),
-                iw=request.data.get('iw'),
-                it=request.data.get('it'),
-                lt=request.data.get('lt'),
-                cm_ac=request.data.get('cm_ac'),
-                cl_0=request.data.get('cl_0'),
-                cl_alpha=request.data.get('cl_alpha')
+                simulation_id=simulation_id,
+                xcg=xcg,
+                xac_w=xac_w,
+                sw=sw,
+                st=st, 
+                cw=cw,
+                ct=ct,
+                iw=iw,
+                it=it,
+                lt=lt,
+                cm_ac=cm_ac,
+                cl_0=cl_0,
+                cl_alpha=cl_alpha
             )
             
             viewmodel = CreateCmSimulationViewmodel(simulation)
