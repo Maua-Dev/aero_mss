@@ -71,5 +71,5 @@ class Test_CreateCmSimulationController:
         response = controller(request=request)
 
         assert response.status_code == 400
-        assert response.body == 'Field simulation_id is not valid'
+        assert response.body == "Field simulation_id isn't in the right type.\n Received: int.\n Expected: str"
         

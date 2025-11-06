@@ -28,30 +28,69 @@ class CreateCmSimulationController:
 
             if simulation_id is None:
                 raise MissingParameters('simulation_id')
+            if isinstance(simulation_id, str) is False:
+                raise WrongTypeParameter('simulation_id', 'str', type(simulation_id).__name__)
+            
             if xcg is None:
                 raise MissingParameters('xcg')
+            if isinstance(xcg, float) is False:
+                raise WrongTypeParameter('xcg', 'float', type(xcg).__name__)
+            
             if xac_w is None:
                 raise MissingParameters('xac_w')
+            if isinstance(xac_w, float) is False:
+                raise WrongTypeParameter('xac_w', 'float', type(xac_w).__name__)
+            
             if sw is None:
                 raise MissingParameters('sw')
+            if isinstance(sw, float) is False:
+                raise WrongTypeParameter('sw', 'float', type(sw).__name__)
+            
             if st is None:
                 raise MissingParameters('st')
+            if isinstance(st, float) is False:
+                raise WrongTypeParameter('st', 'float', type(st).__name__)
+            
             if cw is None:
                 raise MissingParameters('cw')
+            if isinstance(cw, float) is False:
+                raise WrongTypeParameter('cw', 'float', type(cw).__name__)
+            
             if ct is None:
                 raise MissingParameters('ct')
+            if isinstance(ct, float) is False:
+                raise WrongTypeParameter('ct', 'float', type(ct).__name__)
+            
             if iw is None:
                 raise MissingParameters('iw')
+            if isinstance(iw, float) is False:
+                raise WrongTypeParameter('iw', 'float', type(iw).__name__)
+            
             if it is None:
                 raise MissingParameters('it')
+            if isinstance(it, float) is False:
+                raise WrongTypeParameter('it', 'float', type(it).__name__)
+            
             if lt is None:
                 raise MissingParameters('lt')
+            if isinstance(lt, float) is False:
+                raise WrongTypeParameter('lt', 'float', type(lt).__name__)
+            
             if cm_ac is None:
                 raise MissingParameters('cm_ac')
+            if isinstance(cm_ac, float) is False:
+                raise WrongTypeParameter('cm_ac', 'float', type(cm_ac).__name__)
+            
             if cl_0 is None:
                 raise MissingParameters('cl_0')
+            if isinstance(cl_0, float) is False:
+                raise WrongTypeParameter('cl_0', 'float', type(cl_0).__name__)
+            
             if cl_alpha is None:
                 raise MissingParameters('cl_alpha')
+            if isinstance(cl_alpha, float) is False:
+                raise WrongTypeParameter('cl_alpha', 'float', type(cl_alpha).__name__)
+            
             
             simulation = self.usecase(
                 simulation_id=simulation_id,
