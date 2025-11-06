@@ -23,19 +23,21 @@ class Test_CreateCmSimulationViewModel:
         cmSimulationViewmodel = CreateCmSimulationViewmodel(cm_simulation=cm_simulation).to_dict()
 
         expected = {
-            'simulation_id': id_esperado,
-            'xcg': 0.25,
-            'xac_w': 0.9,
-            'sw': 0.5,
-            'st': 0.5,
-            'cw': 2.0,
-            'ct': 1.0,
-            'iw': 1.0,
-            'it': 2.0,
-            'lt': 3.0,
-            'cm_ac': -0.05,
-            'cl_0': 0.0,
-            'cl_alpha': 3.5,
+            'simulation': {
+                'simulation_id': id_esperado,
+                'xcg': 0.25,
+                'xac_w': 0.9,
+                'sw': 0.5,
+                'st': 0.5,
+                'cw': 2.0,
+                'ct': 1.0,
+                'iw': 1.0,
+                'it': 2.0,
+                'lt': 3.0,
+                'cm_ac': -0.35,
+                'cl_0': 0.0,
+                'cl_alpha': 3.5
+            },
             'message': 'the CM simulation was created successfully'
         }
 

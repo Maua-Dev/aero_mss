@@ -32,18 +32,20 @@ class CreateCmSimulationViewmodel:
 
     def to_dict(self):
         return {
-            'simulation_id': self.simulation_id,
-            'xcg': self.xcg,
-            'xac_w': self.xac_w,
-            'sw': self.sw,
-            'st': self.st,
-            'cw': self.cw,
-            'ct': self.ct,
-            'iw': self.iw,
-            'it': self.it,
-            'lt': self.lt,
-            'cm_ac': self.cm_ac,
-            'cl_0': self.cl_0,
-            'cl_alpha': self.cl_alpha,
+            'simulation': {
+                'simulation_id': self.simulation_id,
+                'xcg': self.xcg,
+                'xac_w': self.xac_w,
+                'sw': self.sw,
+                'st': self.st,
+                'cw': self.cw,
+                'ct': self.ct,
+                'iw': self.iw,
+                'it': self.it,
+                'lt': self.lt,
+                'cm_ac': self.cm_ac,
+                'cl_0': self.cl_0,
+                'cl_alpha': self.cl_alpha
+            },
             'message': "the CM simulation was created successfully"
         }
