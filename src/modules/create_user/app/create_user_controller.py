@@ -23,9 +23,9 @@ class CreateUserController:
                 name=request.data.get('name'),
                 email=request.data.get('email')
             )
-
+            
             viewmodel = CreateUserViewmodel(user)
-
+            
             return Created(viewmodel.to_dict())
 
         except NoItemsFound as err:
@@ -45,5 +45,7 @@ class CreateUserController:
             return BadRequest(body=err.message)
 
         except Exception as err:
+            
+            print(err)
 
             return InternalServerError(body=err.args[0])
