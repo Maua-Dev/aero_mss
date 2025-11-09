@@ -1,17 +1,29 @@
 version: '3.8'
+
 services:
-  dynamodb-local:
-    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
+  dynamodb: 
     image: "amazon/dynamodb-local:latest"
-    container_name: dynamodb
+    container_name: dynamodb-local 
+    restart: unless-stopped 
     ports:
       - "8000:8000"
     volumes:
-      - "./docker/dynamodb:/home/dynamodblocal/data"
+      - dynamodb_data:/home/dynamodblocal/data
     working_dir: /home/dynamodblocal
+    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
     networks:
-      - dynamodb-local
+      - dynamodb-net
+    healthcheck:
+      test: ["CMD-SHELL", "curl -s http://localhost:8000 > /dev/null || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+volumes:
+  dynamodb_data:
+    driver: local
 
 networks:
-    dynamodb-local:
-        name: dynamodb-local
+  dynamodb-net:
+    name: dynamodb-local-net
