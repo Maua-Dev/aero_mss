@@ -6,11 +6,14 @@ class DeleteSimulationUsecase:
     def __init__(self, repo: ICmSimulationRepository):
         self.repo = repo
 
-    def __call__(self, simulation_id: int) -> CmSimulation:
+    def __call__(self, simulation_id: str) -> CmSimulation:
 
-        if type(simulation_id) != int:
+        if type(simulation_id) != str:
+            raise EntityError("simulation_id")
+        
+        if not CmSimulation.validate_simulation_id(simulation_id):
             raise EntityError("simulation_id")
 
-        simulation = self.repo.delete_simulation(simulation_id)
+        simulation = self.repo.delete_cm_simulation(simulation_id)
 
         return simulation

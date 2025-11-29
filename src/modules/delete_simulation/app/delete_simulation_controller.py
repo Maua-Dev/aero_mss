@@ -3,7 +3,7 @@ from .delete_simulation_viewmodel import DeleteSimulationViewmodel
 from src.shared.helpers.errors.controller_errors import MissingParameters, WrongTypeParameter
 from src.shared.helpers.errors.domain_errors import EntityError
 from src.shared.helpers.errors.usecase_errors import NoItemsFound
-from src.shared.helpers.external_interfaces.http_codes import OK, NotFound, BadRequest, InternalServer
+from src.shared.helpers.external_interfaces.http_codes import OK, NotFound, BadRequest, InternalServerError
 from src.shared.helpers.external_interfaces.external_interface import IResponse, IRequest
 
 class DeleteSimulationController:
@@ -37,4 +37,4 @@ class DeleteSimulationController:
 
         except Exception as err:
             print(err)
-            return InternalServer(body=err.args[0])
+            return InternalServerError(body=err.args[0])
