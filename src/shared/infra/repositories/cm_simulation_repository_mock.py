@@ -13,9 +13,9 @@ class CmSimulationRepositoryMock(ICmSimulationRepository):
 
     def __init__(self):
         self.simulations = [
-            CmSimulation(simulation_id=str(uuid.uuid4()), xcg=0.5, xac_w=0.5, sw=1.0, st=1.0, cw=1.0, ct=1.0, iw=1.0, it=1.0, lt=1.0, cm_ac=0.3, cl_0=0.5, cl_alpha=5.0),
-            CmSimulation(simulation_id=str(uuid.uuid4()), xcg=0.2, xac_w=0.3, sw=1.0, st=1.0, cw=1.0, ct=1.0, iw=1.0, it=1.0, lt=1.0, cm_ac=0.4, cl_0=0.3, cl_alpha=5.0),
-            CmSimulation(simulation_id=str(uuid.uuid4()), xcg=0.3, xac_w=0.4, sw=1.0, st=1.0, cw=1.0, ct=1.0, iw=1.0, it=1.0, lt=1.0, cm_ac=0.2, cl_0=0.4, cl_alpha=5.0)
+            CmSimulation(simulation_id="d1e1e1e1-1111-4111-a111-111111111111", xcg=0.5, xac_w=0.5, sw=1.0, st=1.0, cw=1.0, ct=1.0, iw=1.0, it=1.0, lt=1.0, cm_ac=0.3, cl_0=0.5, cl_alpha=5.0),
+            CmSimulation(simulation_id="d2e2e2e2-2222-4222-a222-222222222222", xcg=0.2, xac_w=0.3, sw=1.0, st=1.0, cw=1.0, ct=1.0, iw=1.0, it=1.0, lt=1.0, cm_ac=0.4, cl_0=0.3, cl_alpha=5.0),
+            CmSimulation(simulation_id="d3e3e3e3-3333-4333-a333-333333333333", xcg=0.3, xac_w=0.4, sw=1.0, st=1.0, cw=1.0, ct=1.0, iw=1.0, it=1.0, lt=1.0, cm_ac=0.2, cl_0=0.4, cl_alpha=5.0)
         ]
         self.simulation_counter = 3
 

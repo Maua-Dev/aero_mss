@@ -12,18 +12,18 @@ class Test_UpdateCmSimulationController:
         simulation_id = repo.simulations[0].simulation_id
         request = HttpRequest(body={
             'simulation_id': simulation_id,
-            'xcg': 25.0,
-            'xac_w': 30.0,
-            'sw': 150.0,
-            'st': 40.0,
-            'cw': 20.0,
-            'ct': 15.0,
-            'iw': 10.0,
-            'it': 5.0,
-            'lt': 12.0,
-            'cm_ac': -2.5,
-            'cl_0': 0.3,
-            'cl_alpha': 5.5
+            'new_xcg': 25.0,
+            'new_xac_w': 30.0,
+            'new_sw': 150.0,
+            'new_st': 40.0,
+            'new_cw': 20.0,
+            'new_ct': 15.0,
+            'new_iw': 10.0,
+            'new_it': 5.0,
+            'new_lt': 12.0,
+            'new_cm_ac': -2.5,
+            'new_cl_0': 0.3,
+            'new_cl_alpha': 5.5
         })
 
         response = controller(request=request)
@@ -42,4 +42,4 @@ class Test_UpdateCmSimulationController:
         assert response.body['simulation']['cm_ac'] == -2.5
         assert response.body['simulation']['cl_0'] == 0.3
         assert response.body['simulation']['cl_alpha'] == 5.5
-        assert response.body['message'] == "the CmSimulation was updated successfully"
+        assert response.body['message'] == 'the CmSimulation was updated successfully'

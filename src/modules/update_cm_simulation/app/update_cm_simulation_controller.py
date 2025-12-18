@@ -14,98 +14,138 @@ class UpdateCmSimulationController:
     def __call__(self, request: IRequest) -> IResponse:
         try:
             simulation_id = request.data.get('simulation_id')
-            xcg = request.data.get('xcg', None)
-            xac_w = request.data.get('xac_w', None)
-            sw = request.data.get('sw', None)
-            st = request.data.get('st', None)
-            cw = request.data.get('cw', None)
-            ct = request.data.get('ct', None)
-            iw = request.data.get('iw', None)
-            it = request.data.get('it', None)
-            lt = request.data.get('lt', None)
-            cm_ac = request.data.get('cm_ac', None)
-            cl_0 = request.data.get('cl_0', None)
-            cl_alpha = request.data.get('cl_alpha', None)
+            new_xcg = request.data.get('new_xcg', None)
+            new_xac_w = request.data.get('new_xac_w', None)
+            new_sw = request.data.get('new_sw', None)
+            new_st = request.data.get('new_st', None)
+            new_cw = request.data.get('new_cw', None)
+            new_ct = request.data.get('new_ct', None)
+            new_iw = request.data.get('new_iw', None)
+            new_it = request.data.get('new_it', None)
+            new_lt = request.data.get('new_lt', None)
+            new_cm_ac = request.data.get('new_cm_ac', None)
+            new_cl_0 = request.data.get('new_cl_0', None)
+            new_cl_alpha = request.data.get('new_cl_alpha', None)
 
-            if request.data.get('simulation_id') is None:
+            if simulation_id is None:
                 raise MissingParameters('simulation_id')
-            if isinstance(request.data.get('simulation_id'), str) is False:
-                raise WrongTypeParameter('simulation_id', 'str', type(request.data.get('simulation_id')).__name__)
+            if isinstance(simulation_id, str) is False:
+                raise WrongTypeParameter('simulation_id', 'str', type(simulation_id).__name__)
 
-            if request.data.get('xcg') is None:
-                raise MissingParameters('xcg')
-            if isinstance(request.data.get('xcg'), float) is False:
-                raise WrongTypeParameter('xcg', 'float', type(request.data.get('xcg')).__name__)
-            
-            if request.data.get('xac_w') is None:
-                raise MissingParameters('xac_w')
-            if isinstance(request.data.get('xac_w'), float) is False:
-                raise WrongTypeParameter('xac_w', 'float', type(request.data.get('xac_w')).__name__)
-            
-            if request.data.get('sw') is None:
-                raise MissingParameters('sw')
-            if isinstance(request.data.get('sw'), float) is False:
-                raise WrongTypeParameter('sw', 'float', type(request.data.get('sw')).__name__)
-            
-            if request.data.get('st') is None:
-                raise MissingParameters('st')
-            if isinstance(request.data.get('st'), float) is False:
-                raise WrongTypeParameter('st', 'float', type(request.data.get('st')).__name__)
-            
-            if request.data.get('cw') is None:
-                raise MissingParameters('cw')
-            if isinstance(request.data.get('cw'), float) is False:
-                raise WrongTypeParameter('cw', 'float', type(request.data.get('cw')).__name__)
-            
-            if request.data.get('ct') is None:
-                raise MissingParameters('ct')
-            if isinstance(request.data.get('ct'), float) is False:
-                raise WrongTypeParameter('ct', 'float', type(request.data.get('ct')).__name__)
-            
-            if request.data.get('iw') is None:
-                raise MissingParameters('iw')
-            if isinstance(request.data.get('iw'), float) is False:
-                raise WrongTypeParameter('iw', 'float', type(request.data.get('iw')).__name__)
-            
-            if request.data.get('it') is None:
-                raise MissingParameters('it')
-            if isinstance(request.data.get('it'), float) is False:
-                raise WrongTypeParameter('it', 'float', type(request.data.get('it')).__name__)
-            
-            if request.data.get('lt') is None:
-                raise MissingParameters('lt')
-            if isinstance(request.data.get('lt'), float) is False:
-                raise WrongTypeParameter('lt', 'float', type(request.data.get('lt')).__name__)
-            
-            if request.data.get('cm_ac') is None:
-                raise MissingParameters('cm_ac')
-            if isinstance(request.data.get('cm_ac'), float) is False:
-                raise WrongTypeParameter('cm_ac', 'float', type(request.data.get('cm_ac')).__name__)
-            
-            if request.data.get('cl_0') is None:
-                raise MissingParameters('cl_0')
-            if isinstance(request.data.get('cl_0'), float) is False:
-                raise WrongTypeParameter('cl_0', 'float', type(request.data.get('cl_0')).__name__)
-            
-            if request.data.get('cl_alpha') is None:
-                raise MissingParameters('cl_alpha')
-            if isinstance(request.data.get('cl_alpha'), float) is False:
-                raise WrongTypeParameter('cl_alpha', 'float', type(request.data.get('cl_alpha')).__name__)
+            if new_xcg is None:
+                raise MissingParameters('new_xcg')
+            if isinstance(new_xcg, float) is False:
+                raise WrongTypeParameter('new_xcg', 'float', type(new_xcg).__name__)
+
+            if new_xac_w is None:
+                raise MissingParameters('new_xac_w')
+            if isinstance(new_xac_w, float) is False:
+                raise WrongTypeParameter('new_xac_w', 'float', type(new_xac_w).__name__)
+
+            if new_sw is None:
+                raise MissingParameters('new_sw')
+            if isinstance(new_sw, float) is False:
+                raise WrongTypeParameter('new_sw', 'float', type(new_sw).__name__)
+
+            if new_st is None:
+                raise MissingParameters('new_st')
+            if isinstance(new_st, float) is False:
+                raise WrongTypeParameter('new_st', 'float', type(new_st).__name__)
+
+            if new_cw is None:
+                raise MissingParameters('new_cw')
+            if isinstance(new_cw, float) is False:
+                raise WrongTypeParameter('new_cw', 'float', type(new_cw).__name__)
+
+            if new_ct is None:
+                raise MissingParameters('new_ct')
+            if isinstance(new_ct, float) is False:
+                raise WrongTypeParameter('new_ct', 'float', type(new_ct).__name__)
+
+            if new_iw is None:
+                raise MissingParameters('new_iw')
+            if isinstance(new_iw, float) is False:
+                raise WrongTypeParameter('new_iw', 'float', type(new_iw).__name__)
+
+            if new_it is None:
+                raise MissingParameters('new_it')
+            if isinstance(new_it, float) is False:
+                raise WrongTypeParameter('new_it', 'float', type(new_it).__name__)
+
+            if new_lt is None:
+                raise MissingParameters('new_lt')
+            if isinstance(new_lt, float) is False:
+                raise WrongTypeParameter('new_lt', 'float', type(new_lt).__name__)
+
+            if new_cm_ac is None:
+                raise MissingParameters('new_cm_ac')
+            if isinstance(new_cm_ac, float) is False:
+                raise WrongTypeParameter('new_cm_ac', 'float', type(new_cm_ac).__name__)
+
+            if new_cl_0 is None:
+                raise MissingParameters('new_cl_0')
+            if isinstance(new_cl_0, float) is False:
+                raise WrongTypeParameter('new_cl_0', 'float', type(new_cl_0).__name__)
+
+            if new_cl_alpha is None:
+                raise MissingParameters('new_cl_alpha')
+            if isinstance(new_cl_alpha, float) is False:
+                raise WrongTypeParameter('new_cl_alpha', 'float', type(new_cl_alpha).__name__)
+
+            if new_iw is None:
+                raise MissingParameters('new_iw')
+            if isinstance(new_iw, float) is False:
+                raise WrongTypeParameter('new_iw', 'float', type(new_iw).__name__)
+
+            if new_it is None:
+                raise MissingParameters('new_it')
+            if isinstance(new_it, float) is False:
+                raise WrongTypeParameter('new_it', 'float', type(new_it).__name__)
+
+            if new_lt is None:
+                raise MissingParameters('new_lt')
+            if isinstance(new_lt, float) is False:
+                raise WrongTypeParameter('new_lt', 'float', type(new_lt).__name__)
+
+            if new_cm_ac is None:
+                raise MissingParameters('new_cm_ac')
+            if isinstance(new_cm_ac, float) is False:
+                raise WrongTypeParameter('new_cm_ac', 'float', type(new_cm_ac).__name__)
+
+            if new_cl_0 is None:
+                raise MissingParameters('new_cl_0')
+            if isinstance(new_cl_0, float) is False:
+                raise WrongTypeParameter('new_cl_0', 'float', type(new_cl_0).__name__)
+
+            if new_cl_alpha is None:
+                raise MissingParameters('new_cl_alpha')
+            if isinstance(new_cl_alpha, float) is False:
+                raise WrongTypeParameter('new_cl_alpha', 'float', type(new_cl_alpha).__name__)
+
+            if new_cl_0 is None:
+                raise MissingParameters('new_cl_0')
+            if isinstance(new_cl_0, float) is False:
+                raise WrongTypeParameter('new_cl_0', 'float', type(new_cl_0).__name__)
+
+            if new_cl_alpha is None:
+                raise MissingParameters('new_cl_alpha')
+            if isinstance(new_cl_alpha, float) is False:
+                raise WrongTypeParameter('new_cl_alpha', 'float', type(new_cl_alpha).__name__)
 
             simulation = self.UpdateCmSimulationUsecase(
                 simulation_id=simulation_id,
-                new_xcg=xcg,
-                new_xac_w=xac_w,
-                new_sw=sw,
-                new_st=st, 
-                new_cw=cw,
-                new_ct=ct,
-                new_iw=iw,
-                new_it=it,
-                new_lt=lt,
-                new_Cm_ac=cm_ac,
-                new_Cl_0=cl_0,
-                new_Cl_alpha=cl_alpha
+                new_xcg=new_xcg,
+                new_xac_w=new_xac_w,
+                new_sw=new_sw,
+                new_st=new_st, 
+                new_cw=new_cw,
+                new_ct=new_ct,
+                new_iw=new_iw,
+                new_it=new_it,
+                new_lt=new_lt,
+                new_Cm_ac=new_cm_ac,
+                new_Cl_0=new_cl_0,
+                new_Cl_alpha=new_cl_alpha
             )
 
             viewmodel = UpdateCmSimulationViewmodel(cm_simulation=simulation)
