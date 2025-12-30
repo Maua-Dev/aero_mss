@@ -15,8 +15,12 @@ class DeleteSimulationController:
             if request.data.get('simulation_id') is None:
                 raise MissingParameters('simulation_id')
 
+            simulation_id = request.data.get('simulation_id')
+            if type(simulation_id) != str:
+                raise EntityError("simulation_id")
+
             simulation = self.delete_simulation_use_case(
-                simulation_id=request.data.get('simulation_id')
+                simulation_id=simulation_id
             )
 
             viewmodel = DeleteSimulationViewmodel(simulation)
