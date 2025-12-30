@@ -1,21 +1,31 @@
-from src.shared.domain.interfaces.controller import Controller
-from src.shared.domain.interfaces.usecase import Usecase
-from src.shared.domain.interfaces.http import IRequest, IResponse
+from typing import List
+
+from src.shared.helpers.external_interfaces.external_interface import IRequest, IResponse
+from .get_all_simulations_usecase import GetAllSimulationsUsecase
+from .get_all__simulations_viewmodel import GetAllSimulationsViewModel
+from src.shared.domain.entities.cm_simulation import CmSimulation
 from src.shared.helpers.errors.controller_errors import MissingParameters, WrongTypeParameter
 from src.shared.helpers.errors.domain_errors import EntityError
-from src.shared.helpers.external_interfaces.http_codes import OK, NotFound, BadRequest, InternalServer
+from src.shared.helpers.errors.usecase_errors import NoItemsFound
+from src.shared.helpers.external_interfaces.http_codes import OK, NotFound, BadRequest, InternalServerError
 
 
-class getAllSimulationsController(Controller):
+class GetAllSimulationsController:
 
-    def __init__(self, usecase: Usecase):
+    def __init__(self, usecase: GetAllSimulationsUsecase):
         self.usecase = usecase
 
     def __call__(self, request: IRequest) -> IResponse:
         try:
-            simulations = self.usecase()
+            all_simulations_list: List[CmSimulation] = self.usecase()
 
-            return OK(simulations)
+            viewmodel = GetAllSimulationsViewModel(all_simulations_list)
+
+            return OK(viewmodel.to_dict())
+
+        except NoItemsFound as err:
+
+            return NotFound(body=err.message)
 
         except MissingParameters as err:
 
@@ -30,7 +40,5 @@ class getAllSimulationsController(Controller):
             return BadRequest(body=err.message)
 
         except Exception as err:
-            
-            print(err)
 
             return InternalServerError(body=err.args[0]) 

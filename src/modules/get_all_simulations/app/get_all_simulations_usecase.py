@@ -1,10 +1,13 @@
-from 
+from src.shared.domain.entities.cm_simulation import CmSimulation
+from typing import List
+from src.shared.domain.repositories.cm_simulation_repository_interface import ICmSimulationRepository
 
-class GetAllSimulationsViewModel:
-    def __init__(self, simulations):
-        self.simulations = simulations
 
-    def to_dict(self):
-        return {
-            "simulations": [simulation.to_dict() for simulation in self.simulations]
-        }
+class GetAllSimulationsUsecase:
+    def __init__(self, repo: ICmSimulationRepository):
+        self.repo = repo
+
+    def __call__(self) -> List[CmSimulation]:
+        all_simulations_list = self.repo.get_all_cm_simulations()
+
+        return all_simulations_list
