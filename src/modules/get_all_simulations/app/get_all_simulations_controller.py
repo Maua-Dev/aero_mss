@@ -2,7 +2,7 @@ from typing import List
 
 from src.shared.helpers.external_interfaces.external_interface import IRequest, IResponse
 from .get_all_simulations_usecase import GetAllSimulationsUsecase
-from .get_all__simulations_viewmodel import GetAllSimulationsViewModel
+from .get_all_simulations_viewmodel import GetAllSimulationsViewModel
 from src.shared.domain.entities.cm_simulation import CmSimulation
 from src.shared.helpers.errors.controller_errors import MissingParameters, WrongTypeParameter
 from src.shared.helpers.errors.domain_errors import EntityError

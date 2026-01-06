@@ -1,4 +1,4 @@
-from src.modules.get_all_simulations.app.get_all__simulations_viewmodel import GetAllSimulationsViewModel, SimulationViewModel
+from src.modules.get_all_simulations.app.get_all_simulations_viewmodel import GetAllSimulationsViewModel, SimulationViewModel
 from src.shared.domain.entities.cm_simulation import CmSimulation
 import uuid
 
