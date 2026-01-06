@@ -4,6 +4,7 @@ import os
 from src.shared.domain.observability.observability_interface import IObservability
 
 from src.shared.domain.repositories.user_repository_interface import IUserRepository
+from src.shared.domain.repositories.cm_simulation_repository_interface import ICmSimulationRepository
 
 
 class STAGE(Enum):
@@ -73,16 +74,16 @@ class Environments:
             raise Exception("No repository found for this stage")
 
     @staticmethod
-    def get_cm_simulation_repo():
+    def get_cm_simulation_repo() -> ICmSimulationRepository:
         if Environments.get_envs().stage == STAGE.TEST:
             from src.shared.infra.repositories.cm_simulation_repository_mock import CmSimulationRepositoryMock
             return CmSimulationRepositoryMock
         elif Environments.get_envs().stage in [STAGE.DEV, STAGE.HOMOLOG, STAGE.PROD]:
-            from src.shared.infra.repositories.cm_simulation_repository_dynamo import CMSimulationRepositoryDynamo
-            return CMSimulationRepositoryDynamo
+            from src.shared.infra.repositories.cm_simulation_repository_dynamo import CmSimulationRepositoryDynamo
+            return CmSimulationRepositoryDynamo
         else:
             raise Exception("No repository found for this stage")
-    
+
     @staticmethod
     def get_observability() -> IObservability:
         if Environments.get_envs().stage == STAGE.TEST:
