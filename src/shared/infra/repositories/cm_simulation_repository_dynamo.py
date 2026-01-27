@@ -16,7 +16,7 @@ class CMSimulationRepositoryDynamo(ICmSimulationRepository):
 
     def __init__(self):
         self.dynamo = DynamoDatasource(endpoint_url=Environments.get_envs().endpoint_url,
-                                       dynamo_table_name=Environments.get_envs().dynamo_table_name,
+                                       dynamo_table_name=Environments.get_envs().dynamo_simulation_table_name,
                                        region=Environments.get_envs().region,
                                        partition_key=Environments.get_envs().dynamo_partition_key,
                                        sort_key=Environments.get_envs().dynamo_sort_key)

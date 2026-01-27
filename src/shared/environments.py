@@ -48,7 +48,8 @@ class Environments:
             self.s3_bucket_name = "bucket-test"
             self.region = "sa-east-1"
             self.endpoint_url = "http://localhost:8000"
-            self.dynamo_table_name = "aero_mss-table"
+            self.dynamo_user_table_name =  "aero_mss-user-table" # user table will not be used for now this is just for the tests on stage Test
+            self.dynamo_simulation_table_name= os.environ.get("DYNAMO_SIMULATION_TABLE_NAME", "aero_mss-simulation-table")
             self.dynamo_partition_key = "PK"
             self.dynamo_sort_key = "SK"
             self.cloud_front_distribution_domain = "https://d3q9q9q9q9q9q9.cloudfront.net"
@@ -57,7 +58,9 @@ class Environments:
             self.s3_bucket_name = os.environ.get("S3_BUCKET_NAME")
             self.region = os.environ.get("REGION")
             self.endpoint_url = os.environ.get("ENDPOINT_URL")
-            self.dynamo_table_name = os.environ.get("DYNAMO_TABLE_NAME")
+            self.dynamo_user_table_name =  "aero_mss-user-table" # this is just to not break the code
+            # self.dynamo_user_table_name = os.environ.get("DYNAMO_USER_TABLE_NAME") // user table will not be used for now
+            self.dynamo_simulation_table_name= os.environ.get("DYNAMO_SIMULATION_TABLE_NAME")
             self.dynamo_partition_key = os.environ.get("DYNAMO_PARTITION_KEY")
             self.dynamo_sort_key = os.environ.get("DYNAMO_SORT_KEY")
             self.cloud_front_distribution_domain = os.environ.get("CLOUD_FRONT_DISTRIBUTION_DOMAIN")
