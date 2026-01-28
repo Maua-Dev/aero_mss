@@ -52,7 +52,7 @@ class Test_UpdateCmSimulationPresenter:
                 "time": "12/Mar/2020:19:03:58 +0000",
                 "timeEpoch": 1583348638390
             },
-            "body": {"simulation_id":"d1e1e1e1-1111-4111-a111-111111111111", "new_xcg":0.4, "new_xac_w":0.4, "new_sw":1.0, "new_st":1.0, "new_cw":1.0, "new_ct":1.0, "new_iw":1.0, "new_it":1.0, "new_lt":1.0, "new_cm_ac":0.35, "new_cl_0":0.45, "new_cl_alpha":5.0},
+            "body": {"simulation_id":"d1e1e1e1-1111-4111-a111-111111111111", "new_sw":0.4},
             "isBase64Encoded": None,
             "stageVariables": None
         }

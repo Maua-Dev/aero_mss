@@ -1,3 +1,4 @@
+from typing import Optional
 from src.shared.domain.entities.cm_simulation import CmSimulation
 from src.shared.domain.repositories.cm_simulation_repository_interface import ICmSimulationRepository
 from src.shared.helpers.errors.domain_errors import EntityError
@@ -8,57 +9,57 @@ class UpdateCmSimulationUsecase:
 
     def __call__(self, 
                 simulation_id: str, 
-                new_xcg: float, 
-                new_xac_w: float, 
-                new_sw: float, 
-                new_st: float, 
-                new_cw: float, 
-                new_ct: float, 
-                new_iw: float, 
-                new_it: float, 
-                new_lt: float, 
-                new_Cm_ac: float, 
-                new_Cl_0: float, 
-                new_Cl_alpha: float
+                new_xcg: Optional[float] = None, 
+                new_xac_w: Optional[float] = None, 
+                new_sw: Optional[float] = None, 
+                new_st: Optional[float] = None, 
+                new_cw: Optional[float] = None, 
+                new_ct: Optional[float] = None, 
+                new_iw: Optional[float] = None, 
+                new_it: Optional[float] = None, 
+                new_lt: Optional[float] = None, 
+                new_Cm_ac: Optional[float] = None, 
+                new_Cl_0: Optional[float] = None, 
+                new_Cl_alpha: Optional[float] = None
             ) -> CmSimulation:
 
         if type(simulation_id) != str:
             raise EntityError("simulation_id")
         
-        if type(new_xcg) != float:
+        if new_xcg is not None and type(new_xcg) != float:
             raise EntityError("xcg")
         
-        if type(new_xac_w) != float:
+        if new_xac_w is not None and type(new_xac_w) != float:
             raise EntityError("xac_w")
         
-        if type(new_sw) != float:
+        if new_sw is not None and type(new_sw) != float:
             raise EntityError("sw")
         
-        if type(new_st) != float:
+        if new_st is not None and type(new_st) != float:
             raise EntityError("st")
         
-        if type(new_cw) != float:
+        if new_cw is not None and type(new_cw) != float:
             raise EntityError("cw")
         
-        if type(new_ct) != float:
+        if new_ct is not None and type(new_ct) != float:
             raise EntityError("ct")
         
-        if type(new_iw) != float:
+        if new_iw is not None and type(new_iw) != float:
             raise EntityError("iw")
         
-        if type(new_it) != float:
+        if new_it is not None and type(new_it) != float:
             raise EntityError("it")
         
-        if type(new_lt) != float:
+        if new_lt is not None and type(new_lt) != float:
             raise EntityError("lt")
         
-        if type(new_Cm_ac) != float:
+        if new_Cm_ac is not None and type(new_Cm_ac) != float:
             raise EntityError("Cm_ac")
         
-        if type(new_Cl_0) != float:
+        if new_Cl_0 is not None and type(new_Cl_0) != float:
             raise EntityError("Cl_0")
         
-        if type(new_Cl_alpha) != float:
+        if new_Cl_alpha is not None and type(new_Cl_alpha) != float:
             raise EntityError("Cl_alpha")
 
         updated_simulation = self.repo.update_cm_simulation(
