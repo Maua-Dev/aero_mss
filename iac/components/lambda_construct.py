@@ -103,6 +103,6 @@ class LambdaConstruct(Construct):
         self.functions_that_need_dynamo_simulation_table_permissions=[
             self.create_cm_simulation_function,
             self.get_all_simulations_function,
-            self.delete_simulation_function,
+            self.delete_cm_simulation_function,
             self.update_cm_simulation_function
         ]
