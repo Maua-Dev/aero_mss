@@ -1,9 +1,9 @@
-from src.modules.get_all_simulations.app.get_all_simulations_viewmodel import GetAllSimulationsViewModel, SimulationViewModel
+from src.modules.get_all_cm_simulation.app.get_all_cm_simulation_viewmodel import CmSimulationViewModel, GetAllCmSimulationViewModel
 from src.shared.domain.entities.cm_simulation import CmSimulation
 import uuid
 
 
-class Test_GetAllSimulationsViewModel:
+class Test_GetAllCmSimulationViewModel:
     all_simulations_list = [
         CmSimulation(
             simulation_id=str(uuid.uuid4()),
@@ -37,8 +37,8 @@ class Test_GetAllSimulationsViewModel:
         ),
     ]
 
-    def test_get_all_simulations_viewmodel(self):
-        viewmodel = GetAllSimulationsViewModel(self.all_simulations_list)
+    def test_get_all_cm_simulation_viewmodel(self):
+        viewmodel = GetAllCmSimulationViewModel(self.all_simulations_list)
 
         response = viewmodel.to_dict()
 
@@ -60,7 +60,7 @@ class Test_GetAllSimulationsViewModel:
         assert response["simulations"][1]["simulation_id"] == self.all_simulations_list[1].simulation_id
         assert response["simulations"][1]["xcg"] == self.all_simulations_list[1].xcg
 
-    def test_simulation_viewmodel(self):
+    def test_cm_simulation_viewmodel(self):
         simulation_id = str(uuid.uuid4())
         simulation = CmSimulation(
             simulation_id=simulation_id,
@@ -77,7 +77,7 @@ class Test_GetAllSimulationsViewModel:
             cl_0=0.0,
             cl_alpha=3.5
         )
-        viewmodel = SimulationViewModel(simulation)
+        viewmodel = CmSimulationViewModel(simulation)
 
         response = viewmodel.to_dict()
 
@@ -99,8 +99,8 @@ class Test_GetAllSimulationsViewModel:
 
         assert response == expected
 
-    def test_get_all_simulations_viewmodel_empty_list(self):
-        viewmodel = GetAllSimulationsViewModel([])
+    def test_get_all_cm_simulation_viewmodel_empty_list(self):
+        viewmodel = GetAllCmSimulationViewModel([])
 
         response = viewmodel.to_dict()
 

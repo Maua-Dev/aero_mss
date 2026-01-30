@@ -1,15 +1,15 @@
-from src.modules.get_all_simulations.app.get_all_simulations_controller import GetAllSimulationsController
-from src.modules.get_all_simulations.app.get_all_simulations_usecase import GetAllSimulationsUsecase
+from src.modules.get_all_cm_simulation.app.get_all_cm_simulation_controller import GetAllCmSimulationController
+from src.modules.get_all_cm_simulation.app.get_all_cm_simulation_usecase import GetAllCmSimulationUsecase
 from src.shared.infra.repositories.cm_simulation_repository_mock import CmSimulationRepositoryMock
 from src.shared.helpers.external_interfaces.http_models import HttpRequest
 
 
-class Test_GetAllSimulationsController:
+class Test_GetAllCmSimulationController:
 
-    def test_get_all_simulations_controller(self):
+    def test_get_all_cm_simulation_controller(self):
         repo_mock = CmSimulationRepositoryMock()
-        get_all_simulations_usecase = GetAllSimulationsUsecase(repo_mock)
-        controller = GetAllSimulationsController(get_all_simulations_usecase)
+        get_all_cm_simulation_usecase = GetAllCmSimulationUsecase(repo_mock)
+        controller = GetAllCmSimulationController(get_all_cm_simulation_usecase)
 
         response = controller(HttpRequest())
 
@@ -30,11 +30,11 @@ class Test_GetAllSimulationsController:
         assert response.body['simulations'][0]['cl_0'] == repo_mock.simulations[0].cl_0
         assert response.body['simulations'][0]['cl_alpha'] == repo_mock.simulations[0].cl_alpha
 
-    def test_get_all_simulations_controller_no_items(self):
+    def test_get_all_cm_simulation_controller_no_items(self):
         repo_mock = CmSimulationRepositoryMock()
         repo_mock.simulations = []
-        get_all_simulations_usecase = GetAllSimulationsUsecase(repo_mock)
-        controller = GetAllSimulationsController(get_all_simulations_usecase)
+        get_all_cm_simulation_usecase = GetAllCmSimulationUsecase(repo_mock)
+        controller = GetAllCmSimulationController(get_all_cm_simulation_usecase)
 
         response = controller(HttpRequest())
 

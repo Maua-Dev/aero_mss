@@ -2,7 +2,7 @@ from typing import List
 from src.shared.domain.entities.cm_simulation import CmSimulation
 
 
-class SimulationViewModel:
+class CmSimulationViewModel:
     def __init__(self, cm_simulation: CmSimulation):
         self.simulation_id = cm_simulation.simulation_id
         self.xcg = cm_simulation.xcg
@@ -35,9 +35,9 @@ class SimulationViewModel:
             "cl_alpha": self.cl_alpha
         }
 
-class GetAllSimulationsViewModel:
+class GetAllCmSimulationViewModel:
     def __init__(self, simulations: List[CmSimulation]):
-        self.simulations = [SimulationViewModel(simulation) for simulation in simulations]
+        self.simulations = [CmSimulationViewModel(simulation) for simulation in simulations]
 
     def to_dict(self):
         return {

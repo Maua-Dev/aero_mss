@@ -72,8 +72,8 @@ class LambdaConstruct(Construct):
             environment_variables=environment_variables
         )
 
-        self.get_all_simulations_function= self.create_lambda_api_gateway_integration(
-            module_name="get_all_simulations",
+        self.get_all_cm_simulation_function= self.create_lambda_api_gateway_integration(
+            module_name="get_all_cm_simulation",
             method="GET",
             mss_student_api_resource=api_gateway_resource,
             environment_variables=environment_variables
@@ -102,7 +102,7 @@ class LambdaConstruct(Construct):
 
         self.functions_that_need_dynamo_simulation_table_permissions=[
             self.create_cm_simulation_function,
-            self.get_all_simulations_function,
+            self.get_all_cm_simulation_function,
             self.delete_cm_simulation_function,
             self.update_cm_simulation_function
         ]

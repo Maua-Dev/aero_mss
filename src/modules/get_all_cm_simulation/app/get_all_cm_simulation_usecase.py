@@ -3,7 +3,7 @@ from typing import List
 from src.shared.domain.repositories.cm_simulation_repository_interface import ICmSimulationRepository
 
 
-class GetAllSimulationsUsecase:
+class GetAllCmSimulationUsecase:
     def __init__(self, repo: ICmSimulationRepository):
         self.repo = repo
 

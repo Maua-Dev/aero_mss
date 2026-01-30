@@ -1,10 +1,10 @@
 import json
 
-from src.modules.get_all_simulations.app.get_all_simulations_presenter import lambda_handler
+from src.modules.get_all_cm_simulation.app.get_all_cm_simulation_presenter import lambda_handler
 
 
-class Test_GetAllSimulationsPresenter:
-    def test_get_all_simulations_presenter(self):
+class Test_GetAllCmSimulationPresenter:
+    def test_get_all_cm_simulation_presenter(self):
         event = {
             "version": "2.0",
             "routeKey": "$default",
