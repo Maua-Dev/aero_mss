@@ -79,8 +79,8 @@ class LambdaConstruct(Construct):
             environment_variables=environment_variables
         )
 
-        self.delete_simulation_function= self.create_lambda_api_gateway_integration(
-            module_name="delete_simulation",
+        self.delete_cm_simulation_function= self.create_lambda_api_gateway_integration(
+            module_name="delete_cm_simulation",
             method="DELETE",
             mss_student_api_resource=api_gateway_resource,
             environment_variables=environment_variables

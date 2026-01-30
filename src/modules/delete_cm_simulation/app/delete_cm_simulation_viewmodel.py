@@ -1,6 +1,6 @@
 from src.shared.domain.entities.cm_simulation import CmSimulation
 
-class DeleteSimulationViewmodel:
+class DeleteCmSimulationViewmodel:
     simulation_id: str
 
     def __init__(self, simulation: CmSimulation):

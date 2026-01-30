@@ -1,10 +1,10 @@
 import json
-from src.modules.delete_simulation.app.delete_simulation_presenter import lambda_handler
+from src.modules.delete_cm_simulation.app.delete_cm_simulation_presenter import lambda_handler
 
 
-class Test_DeleteSimulationPresenter:
+class Test_DeleteCmSimulationPresenter:
 
-    def test_delete_simulation(self):
+    def test_delete_cm_simulation(self):
         simulation_id = "d1e1e1e1-1111-4111-a111-111111111111"
         
         event = {

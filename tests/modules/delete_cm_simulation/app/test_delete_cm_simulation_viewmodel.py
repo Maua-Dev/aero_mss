@@ -1,10 +1,10 @@
-from src.modules.delete_simulation.app.delete_simulation_viewmodel import DeleteSimulationViewmodel
+from src.modules.delete_cm_simulation.app.delete_cm_simulation_viewmodel import DeleteCmSimulationViewmodel
 from src.shared.domain.entities.cm_simulation import CmSimulation
 import uuid
 
 
-class Test_DeleteSimulationViewmodel:
-    def test_delete_simulation_viewmodel(self):
+class Test_DeleteCmSimulationViewmodel:
+    def test_delete_cm_simulation_viewmodel(self):
         simulation_id = str(uuid.uuid4())
         simulation = CmSimulation(
             simulation_id=simulation_id,
@@ -22,11 +22,11 @@ class Test_DeleteSimulationViewmodel:
             cl_alpha=5.0
         )
 
-        delete_simulation_viewmodel = DeleteSimulationViewmodel(simulation)
+        delete_cm_simulation_viewmodel = DeleteCmSimulationViewmodel(simulation)
 
         expected = {
             'simulation_id': simulation_id,
             'message': 'the simulation was deleted successfully'
         }
 
-        assert expected == delete_simulation_viewmodel.to_dict()
+        assert expected == delete_cm_simulation_viewmodel.to_dict()
