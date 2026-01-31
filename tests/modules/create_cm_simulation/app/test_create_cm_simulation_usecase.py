@@ -8,9 +8,7 @@ class Test_CreateCmSimulationUsecase:
     def test_create_cm_simulation(self):
         repo = CmSimulationRepositoryMock()
         usecase = CreateCmSimulationUsecase(repo)
-        id_esperado = str(uuid.uuid4())
         simulation = usecase(
-            simulation_id=id_esperado,
             xcg=0.4,
             xac_w=0.4,
             sw=1.0,
@@ -33,7 +31,6 @@ class Test_CreateCmSimulationUsecase:
         id_esperado = str(uuid.uuid4())
         with pytest.raises(EntityError):
             simulation = usecase(
-                simulation_id=id_esperado,
                 xcg='0.4',
                 xac_w=0.4,
                 sw=1.0,

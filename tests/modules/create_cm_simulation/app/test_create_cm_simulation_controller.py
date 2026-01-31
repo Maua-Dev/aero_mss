@@ -11,7 +11,6 @@ class Test_CreateCmSimulationController:
         controller = CreateCmSimulationController(usecase=usecase)
         id_esperado = str(uuid.uuid4())
         request = HttpRequest(body={
-            'simulation_id': id_esperado,
             'xcg':0.4,
             'xac_w':0.4,
             'sw':1.0,
@@ -46,14 +45,13 @@ class Test_CreateCmSimulationController:
         assert response.body['message'] == 'the CM simulation was created successfully'
 
     
-    def test_create_cm_simulation_controller_invalid_simulation_id(self):
+    def test_create_cm_simulation_controller_invalid_parameter(self):
         repo = CmSimulationRepositoryMock()
         usecase = CreateCmSimulationUsecase(repo=repo)
         controller = CreateCmSimulationController(usecase=usecase)
 
         request = HttpRequest(body={
-            'simulation_id': 43, 
-            'xcg':0.4,
+            'xcg':'invalid',
             'xac_w':0.4,
             'sw':1.0,
             'st':1.0,
@@ -71,5 +69,5 @@ class Test_CreateCmSimulationController:
         response = controller(request=request)
 
         assert response.status_code == 400
-        assert response.body == "Field simulation_id isn't in the right type.\n Received: int.\n Expected: str"
+        assert response.body == "Field xcg isn't in the right type.\n Received: str.\n Expected: float"
         

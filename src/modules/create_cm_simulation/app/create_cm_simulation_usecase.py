@@ -1,3 +1,4 @@
+import uuid
 from src.shared.domain.entities.cm_simulation import CmSimulation
 from src.shared.domain.repositories.cm_simulation_repository_interface import ICmSimulationRepository
 from src.shared.helpers.errors.domain_errors import EntityError
@@ -7,7 +8,6 @@ class CreateCmSimulationUsecase:
         self.repo = repo
 
     def __call__(self, 
-                 simulation_id: str, 
                  xcg: float,
                  xac_w: float,
                  sw: float,
@@ -21,10 +21,6 @@ class CreateCmSimulationUsecase:
                  cl_0: float,
                  cl_alpha: float
                  ) -> CmSimulation:
-
-        if not CmSimulation.validate_simulation_id(simulation_id):
-            raise EntityError("simulation_id")
-        self.simulation_id = simulation_id
         
         if not CmSimulation.validate_xcg(xcg):
           raise EntityError("xcg")
@@ -73,6 +69,8 @@ class CreateCmSimulationUsecase:
         if not CmSimulation.validate_cl_alpha(cl_alpha):
             raise EntityError("cl_alpha")
         self.cl_alpha = cl_alpha
+        
+        simulation_id = str(uuid.uuid4())
 
         cm_simulation = CmSimulation(
             simulation_id=simulation_id,

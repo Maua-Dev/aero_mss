@@ -12,7 +12,6 @@ class CreateCmSimulationController:
 
     def __call__(self, request: IRequest) -> IResponse:
         try:
-            simulation_id = request.data.get('simulation_id')
             xcg = request.data.get('xcg', None)
             xac_w = request.data.get('xac_w', None)
             sw = request.data.get('sw', None)
@@ -25,11 +24,6 @@ class CreateCmSimulationController:
             cm_ac = request.data.get('cm_ac', None)
             cl_0 = request.data.get('cl_0', None)
             cl_alpha = request.data.get('cl_alpha', None)
-
-            if simulation_id is None:
-                raise MissingParameters('simulation_id')
-            if isinstance(simulation_id, str) is False:
-                raise WrongTypeParameter('simulation_id', 'str', type(simulation_id).__name__)
             
             if xcg is None:
                 raise MissingParameters('xcg')
@@ -93,7 +87,6 @@ class CreateCmSimulationController:
             
             
             simulation = self.usecase(
-                simulation_id=simulation_id,
                 xcg=xcg,
                 xac_w=xac_w,
                 sw=sw,

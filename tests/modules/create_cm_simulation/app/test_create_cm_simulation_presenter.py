@@ -52,7 +52,7 @@ class Test_CreateCmSimulationPresenter:
                 "time": "12/Mar/2020:19:03:58 +0000",
                 "timeEpoch": 1583348638390
             },
-            "body": '{"simulation_id":"a3c1e7b2-8f7e-4c2a-9e7d-2b3a4c5d6e7f",  "xcg":0.4, "xac_w":0.4, "sw":1.0, "st":1.0, "sw":1.0, "cw":1.0, "ct":1.0, "iw":1.0, "it":1.0, "lt":1.0, "cm_ac":0.35, "cl_0":0.45, "cl_alpha":5.0}',
+            "body": '{"xcg":0.4, "xac_w":0.4, "sw":1.0, "st":1.0, "sw":1.0, "cw":1.0, "ct":1.0, "iw":1.0, "it":1.0, "lt":1.0, "cm_ac":0.35, "cl_0":0.45, "cl_alpha":5.0}',
             "isBase64Encoded": None,
             "stageVariables": None
         }
