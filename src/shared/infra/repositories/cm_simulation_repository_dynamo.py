@@ -43,8 +43,7 @@ class CmSimulationRepositoryDynamo(ICmSimulationRepository):
     def create_cm_simulation(self, new_cm_simulation: CmSimulation) -> CmSimulation:
         cm_simulation_dto = CmSimulationDynamoDTO.from_entity(cm_simulation=new_cm_simulation)
         resp = self.dynamo.put_item(partition_key=self.partition_key_format(new_cm_simulation.simulation_id),
-                                    sort_key=self.sort_key_format(simulation_id=new_cm_simulation.simulation_id), item=cm_simulation_dto.to_dynamo(),
-                                    is_decimal=True)
+                                    sort_key=self.sort_key_format(simulation_id=new_cm_simulation.simulation_id), item=cm_simulation_dto.to_dynamo())
         return new_cm_simulation
     
     def delete_cm_simulation(self, simulation_id: str) -> CmSimulation:
@@ -89,8 +88,7 @@ class CmSimulationRepositoryDynamo(ICmSimulationRepository):
         # Save updated simulation
         cm_simulation_dto = CmSimulationDynamoDTO.from_entity(cm_simulation=current_simulation)
         self.dynamo.put_item(partition_key=self.partition_key_format(simulation_id),
-                             sort_key=self.sort_key_format(simulation_id=simulation_id), item=cm_simulation_dto.to_dynamo(),
-                             is_decimal=True)
+                             sort_key=self.sort_key_format(simulation_id=simulation_id), item=cm_simulation_dto.to_dynamo())
         return current_simulation
     
     def get_cm_simulation_counter(self) -> int:
