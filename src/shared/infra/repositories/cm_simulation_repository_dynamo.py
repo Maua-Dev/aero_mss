@@ -6,7 +6,7 @@ from src.shared.helpers.errors.usecase_errors import NoItemsFound
 from src.shared.infra.dto.cm_simulation_dynamo_dto import CmSimulationDynamoDTO
 from src.shared.infra.external.dynamo.datasources.dynamo_datasource import DynamoDatasource
 
-class CMSimulationRepositoryDynamo(ICmSimulationRepository):
+class CmSimulationRepositoryDynamo(ICmSimulationRepository):
     @staticmethod
     def partition_key_format(simulation_id: str) -> str:
         return f"cm_simulation#{simulation_id}"
