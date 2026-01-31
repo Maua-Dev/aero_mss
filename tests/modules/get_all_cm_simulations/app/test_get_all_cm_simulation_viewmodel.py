@@ -42,23 +42,23 @@ class Test_GetAllCmSimulationViewModel:
 
         response = viewmodel.to_dict()
 
-        assert response["message"] == "the simulations were retrieved successfully"
-        assert len(response["simulations"]) == 2
-        assert response["simulations"][0]["simulation_id"] == self.all_simulations_list[0].simulation_id
-        assert response["simulations"][0]["xcg"] == self.all_simulations_list[0].xcg
-        assert response["simulations"][0]["xac_w"] == self.all_simulations_list[0].xac_w
-        assert response["simulations"][0]["sw"] == self.all_simulations_list[0].sw
-        assert response["simulations"][0]["st"] == self.all_simulations_list[0].st
-        assert response["simulations"][0]["cw"] == self.all_simulations_list[0].cw
-        assert response["simulations"][0]["ct"] == self.all_simulations_list[0].ct
-        assert response["simulations"][0]["iw"] == self.all_simulations_list[0].iw
-        assert response["simulations"][0]["it"] == self.all_simulations_list[0].it
-        assert response["simulations"][0]["lt"] == self.all_simulations_list[0].lt
-        assert response["simulations"][0]["cm_ac"] == self.all_simulations_list[0].cm_ac
-        assert response["simulations"][0]["cl_0"] == self.all_simulations_list[0].cl_0
-        assert response["simulations"][0]["cl_alpha"] == self.all_simulations_list[0].cl_alpha
-        assert response["simulations"][1]["simulation_id"] == self.all_simulations_list[1].simulation_id
-        assert response["simulations"][1]["xcg"] == self.all_simulations_list[1].xcg
+        assert response["message"] == "the cm simulations were retrieved successfully"
+        assert len(response["cm_simulations"]) == 2
+        assert response["cm_simulations"][0]["simulation_id"] == self.all_simulations_list[0].simulation_id
+        assert response["cm_simulations"][0]["xcg"] == self.all_simulations_list[0].xcg
+        assert response["cm_simulations"][0]["xac_w"] == self.all_simulations_list[0].xac_w
+        assert response["cm_simulations"][0]["sw"] == self.all_simulations_list[0].sw
+        assert response["cm_simulations"][0]["st"] == self.all_simulations_list[0].st
+        assert response["cm_simulations"][0]["cw"] == self.all_simulations_list[0].cw
+        assert response["cm_simulations"][0]["ct"] == self.all_simulations_list[0].ct
+        assert response["cm_simulations"][0]["iw"] == self.all_simulations_list[0].iw
+        assert response["cm_simulations"][0]["it"] == self.all_simulations_list[0].it
+        assert response["cm_simulations"][0]["lt"] == self.all_simulations_list[0].lt
+        assert response["cm_simulations"][0]["cm_ac"] == self.all_simulations_list[0].cm_ac
+        assert response["cm_simulations"][0]["cl_0"] == self.all_simulations_list[0].cl_0
+        assert response["cm_simulations"][0]["cl_alpha"] == self.all_simulations_list[0].cl_alpha
+        assert response["cm_simulations"][1]["simulation_id"] == self.all_simulations_list[1].simulation_id
+        assert response["cm_simulations"][1]["xcg"] == self.all_simulations_list[1].xcg
 
     def test_cm_simulation_viewmodel(self):
         simulation_id = str(uuid.uuid4())
@@ -104,6 +104,6 @@ class Test_GetAllCmSimulationViewModel:
 
         response = viewmodel.to_dict()
 
-        assert response["message"] == "the simulations were retrieved successfully"
-        assert len(response["simulations"]) == 0
-        assert response["simulations"] == []
+        assert response["message"] == "the cm simulations were retrieved successfully"
+        assert len(response["cm_simulations"]) == 0
+        assert response["cm_simulations"] == []

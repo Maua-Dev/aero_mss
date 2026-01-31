@@ -61,10 +61,10 @@ class Test_GetAllCmSimulationPresenter:
 
         assert response["statusCode"] == 200
         response_body = json.loads(response["body"])
-        assert response_body["message"] == "the simulations were retrieved successfully"
-        assert "simulations" in response_body
-        assert len(response_body["simulations"]) == 3
-        assert all(key in response_body["simulations"][0] for key in [
+        assert response_body["message"] == "the cm simulations were retrieved successfully"
+        assert "cm_simulations" in response_body
+        assert len(response_body["cm_simulations"]) == 3
+        assert all(key in response_body["cm_simulations"][0] for key in [
             "simulation_id", "xcg", "xac_w", "sw", "st", "cw", "ct", 
             "iw", "it", "lt", "cm_ac", "cl_0", "cl_alpha"
         ])

@@ -41,6 +41,6 @@ class GetAllCmSimulationViewModel:
 
     def to_dict(self):
         return {
-            "simulations": [simulation.to_dict() for simulation in self.simulations],
-            "message": "the simulations were retrieved successfully"
+            "cm_simulations": [simulation.to_dict() for simulation in self.simulations],
+            "message": "the cm simulations were retrieved successfully"
         }
