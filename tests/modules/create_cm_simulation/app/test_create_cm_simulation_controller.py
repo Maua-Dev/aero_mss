@@ -29,20 +29,20 @@ class Test_CreateCmSimulationController:
         response = controller(request=request)
 
         assert response.status_code == 201
-        assert response.body['simulation']['simulation_id'] == repo.simulations[-1].simulation_id
-        assert response.body['simulation']['xcg'] == repo.simulations[-1].xcg
-        assert response.body['simulation']['xac_w'] == repo.simulations[-1].xac_w
-        assert response.body['simulation']['sw'] == repo.simulations[-1].sw
-        assert response.body['simulation']['st'] == repo.simulations[-1].st
-        assert response.body['simulation']['cw'] == repo.simulations[-1].cw
-        assert response.body['simulation']['ct'] == repo.simulations[-1].ct
-        assert response.body['simulation']['iw'] == repo.simulations[-1].iw
-        assert response.body['simulation']['it'] == repo.simulations[-1].it
-        assert response.body['simulation']['lt'] == repo.simulations[-1].lt
-        assert response.body['simulation']['cm_ac'] == repo.simulations[-1].cm_ac
-        assert response.body['simulation']['cl_0'] == repo.simulations[-1].cl_0
-        assert response.body['simulation']['cl_alpha'] == repo.simulations[-1].cl_alpha
-        assert response.body['message'] == 'the CM simulation was created successfully'
+        assert response.body['cm_simulation']['simulation_id'] == repo.simulations[-1].simulation_id
+        assert response.body['cm_simulation']['xcg'] == repo.simulations[-1].xcg
+        assert response.body['cm_simulation']['xac_w'] == repo.simulations[-1].xac_w
+        assert response.body['cm_simulation']['sw'] == repo.simulations[-1].sw
+        assert response.body['cm_simulation']['st'] == repo.simulations[-1].st
+        assert response.body['cm_simulation']['cw'] == repo.simulations[-1].cw
+        assert response.body['cm_simulation']['ct'] == repo.simulations[-1].ct
+        assert response.body['cm_simulation']['iw'] == repo.simulations[-1].iw
+        assert response.body['cm_simulation']['it'] == repo.simulations[-1].it
+        assert response.body['cm_simulation']['lt'] == repo.simulations[-1].lt
+        assert response.body['cm_simulation']['cm_ac'] == repo.simulations[-1].cm_ac
+        assert response.body['cm_simulation']['cl_0'] == repo.simulations[-1].cl_0
+        assert response.body['cm_simulation']['cl_alpha'] == repo.simulations[-1].cl_alpha
+        assert response.body['message'] == 'the cm simulation was created successfully'
 
     
     def test_create_cm_simulation_controller_invalid_parameter(self):

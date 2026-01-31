@@ -32,7 +32,7 @@ class CreateCmSimulationViewmodel:
 
     def to_dict(self):
         return {
-            'simulation': {
+            'cm_simulation': {
                 'simulation_id': self.simulation_id,
                 'xcg': self.xcg,
                 'xac_w': self.xac_w,
@@ -47,5 +47,5 @@ class CreateCmSimulationViewmodel:
                 'cl_0': self.cl_0,
                 'cl_alpha': self.cl_alpha
             },
-            'message': "the CM simulation was created successfully"
+            'message': "the cm simulation was created successfully"
         }

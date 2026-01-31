@@ -23,7 +23,7 @@ class Test_CreateCmSimulationViewModel:
         cmSimulationViewmodel = CreateCmSimulationViewmodel(cm_simulation=cm_simulation).to_dict()
 
         expected = {
-            'simulation': {
+            'cm_simulation': {
                 'simulation_id': id_esperado,
                 'xcg': 0.25,
                 'xac_w': 0.9,
@@ -38,7 +38,7 @@ class Test_CreateCmSimulationViewModel:
                 'cl_0': 0.0,
                 'cl_alpha': 3.5
             },
-            'message': 'the CM simulation was created successfully'
+            'message': 'the cm simulation was created successfully'
         }
 
         assert expected == cmSimulationViewmodel

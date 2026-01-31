@@ -117,4 +117,4 @@ class Test_CreateCmSimulationPresenter:
         response = lambda_handler(event, None)
 
         assert response["statusCode"] == 201
-        assert json.loads(response["body"])["message"] == "the CM simulation was created successfully"
+        assert json.loads(response["body"])["message"] == "the cm simulation was created successfully"
