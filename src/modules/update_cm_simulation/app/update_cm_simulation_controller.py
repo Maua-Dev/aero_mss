@@ -4,7 +4,7 @@ from .update_cm_simulation_viewmodel import UpdateCmSimulationViewmodel
 from src.shared.helpers.errors.controller_errors import MissingParameters, WrongTypeParameter
 from src.shared.helpers.errors.domain_errors import EntityError
 from src.shared.helpers.errors.usecase_errors import NoItemsFound
-from src.shared.helpers.external_interfaces.http_codes import OK, NotFound, BadRequest, InternalServerError
+from src.shared.helpers.external_interfaces.http_codes import OK, NotFound, BadRequest, InternalServerError, NoContent
 
 class UpdateCmSimulationController:
 
@@ -67,6 +67,23 @@ class UpdateCmSimulationController:
 
             if new_cl_alpha is not None and isinstance(new_cl_alpha, float) is False:
                 raise WrongTypeParameter('new_cl_alpha', 'float', type(new_cl_alpha).__name__)
+
+            # If no parameters to update were provided besides simulation_id, return NoContent
+            if all(param is None for param in (
+                new_xcg,
+                new_xac_w,
+                new_sw,
+                new_st,
+                new_cw,
+                new_ct,
+                new_iw,
+                new_it,
+                new_lt,
+                new_cm_ac,
+                new_cl_0,
+                new_cl_alpha
+            )):
+                return NoContent()
 
             simulation = self.UpdateCmSimulationUsecase(
                 simulation_id=simulation_id,

@@ -43,3 +43,16 @@ class Test_UpdateCmSimulationController:
         assert response.body['simulation']['cl_0'] == 0.3
         assert response.body['simulation']['cl_alpha'] == 5.5
         assert response.body['message'] == 'the CmSimulation was updated successfully'
+
+    def test_update_cm_simulation_controller_no_content(self):
+        repo = CmSimulationRepositoryMock()
+        usecase = UpdateCmSimulationUsecase(repo=repo)
+        controller = UpdateCmSimulationController(usecase=usecase)
+        simulation_id = repo.simulations[0].simulation_id
+        request = HttpRequest(body={
+            'simulation_id': simulation_id
+        })
+
+        response = controller(request=request)
+
+        assert response.status_code == 204
