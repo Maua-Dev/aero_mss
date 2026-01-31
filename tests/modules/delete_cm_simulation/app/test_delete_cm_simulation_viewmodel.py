@@ -26,7 +26,7 @@ class Test_DeleteCmSimulationViewmodel:
 
         expected = {
             'simulation_id': simulation_id,
-            'message': 'the simulation was deleted successfully'
+            'message': 'the cm simulation was deleted successfully'
         }
 
         assert expected == delete_cm_simulation_viewmodel.to_dict()

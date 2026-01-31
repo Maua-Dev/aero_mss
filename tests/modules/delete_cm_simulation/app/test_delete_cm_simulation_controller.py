@@ -19,7 +19,7 @@ class Test_DeleteCmSimulationController:
             response = controller(request=request)
 
             assert response.status_code == 200
-            assert response.body['message'] == 'the simulation was deleted successfully'
+            assert response.body['message'] == 'the cm simulation was deleted successfully'
 
     def test_delete_cm_simulation_controller_wrong_type(self):
         repo = CmSimulationRepositoryMock()

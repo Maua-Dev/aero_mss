@@ -9,5 +9,5 @@ class DeleteCmSimulationViewmodel:
     def to_dict(self):
         return {
             'simulation_id': self.simulation_id,
-            'message': "the simulation was deleted successfully"
+            'message': "the cm simulation was deleted successfully"
         }

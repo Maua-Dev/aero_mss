@@ -64,5 +64,5 @@ class Test_DeleteCmSimulationPresenter:
         response_body = json.loads(response["body"])
         
         assert response_body["simulation_id"] == simulation_id
-        assert response_body["message"] == "the simulation was deleted successfully"
+        assert response_body["message"] == "the cm simulation was deleted successfully"
         assert response["statusCode"] == 200
