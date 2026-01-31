@@ -42,4 +42,4 @@ class Test_UpdateCmSimulationController:
         assert response.body['simulation']['cm_ac'] == -2.5
         assert response.body['simulation']['cl_0'] == 0.3
         assert response.body['simulation']['cl_alpha'] == 5.5
-        assert response.body['message'] == 'the CmSimulation was updated successfully'
+        assert response.body['message'] == 'the cm simulation was updated successfully'

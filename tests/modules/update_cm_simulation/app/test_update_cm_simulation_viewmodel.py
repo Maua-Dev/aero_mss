@@ -39,7 +39,7 @@ class Test_UpdateCmSimulationViewmodel:
                 'cl_0': 0.0,
                 'cl_alpha': 3.5
             },
-            'message': 'the CmSimulation was updated successfully'
+            'message': 'the cm simulation was updated successfully'
         }
 
         assert expected == updated_cm_simulation_viewmodel

@@ -48,5 +48,5 @@ class UpdateCmSimulationViewmodel:
                 'cl_0': self.cl_0,
                 'cl_alpha': self.cl_alpha
             },
-            'message': "the CmSimulation was updated successfully"
+            'message': "the cm simulation was updated successfully"
         }

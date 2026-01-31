@@ -60,4 +60,4 @@ class Test_UpdateCmSimulationPresenter:
         response = lambda_handler(event, None)
 
         assert response["statusCode"] == 200
-        assert json.loads(response["body"])["message"] == "the CmSimulation was updated successfully"
+        assert json.loads(response["body"])["message"] == "the cm simulation was updated successfully"
