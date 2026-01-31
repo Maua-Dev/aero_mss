@@ -29,17 +29,17 @@ class Test_UpdateCmSimulationController:
         response = controller(request=request)
 
         assert response.status_code == 200
-        assert response.body['simulation']['simulation_id'] == simulation_id
-        assert response.body['simulation']['xcg'] == 25.0
-        assert response.body['simulation']['xac_w'] == 30.0
-        assert response.body['simulation']['sw'] == 150.0
-        assert response.body['simulation']['st'] == 40.0
-        assert response.body['simulation']['cw'] == 20.0
-        assert response.body['simulation']['ct'] == 15.0
-        assert response.body['simulation']['iw'] == 10.0
-        assert response.body['simulation']['it'] == 5.0
-        assert response.body['simulation']['lt'] == 12.0
-        assert response.body['simulation']['cm_ac'] == -2.5
-        assert response.body['simulation']['cl_0'] == 0.3
-        assert response.body['simulation']['cl_alpha'] == 5.5
+        assert response.body['cm_simulation']['simulation_id'] == simulation_id
+        assert response.body['cm_simulation']['xcg'] == 25.0
+        assert response.body['cm_simulation']['xac_w'] == 30.0
+        assert response.body['cm_simulation']['sw'] == 150.0
+        assert response.body['cm_simulation']['st'] == 40.0
+        assert response.body['cm_simulation']['cw'] == 20.0
+        assert response.body['cm_simulation']['ct'] == 15.0
+        assert response.body['cm_simulation']['iw'] == 10.0
+        assert response.body['cm_simulation']['it'] == 5.0
+        assert response.body['cm_simulation']['lt'] == 12.0
+        assert response.body['cm_simulation']['cm_ac'] == -2.5
+        assert response.body['cm_simulation']['cl_0'] == 0.3
+        assert response.body['cm_simulation']['cl_alpha'] == 5.5
         assert response.body['message'] == 'the cm simulation was updated successfully'

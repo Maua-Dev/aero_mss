@@ -24,7 +24,7 @@ class Test_UpdateCmSimulationViewmodel:
         updated_cm_simulation_viewmodel = UpdateCmSimulationViewmodel(cm_simulation=cm_simulation).to_dict()
 
         expected = {
-           'simulation': {
+           'cm_simulation': {
                 'simulation_id': id_esperado,
                 'xcg': 0.25,
                 'xac_w': 0.9,

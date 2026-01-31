@@ -33,7 +33,7 @@ class UpdateCmSimulationViewmodel:
 
     def to_dict(self):
         return {
-            'simulation': {
+            'cm_simulation': {
                 'simulation_id': self.simulation_id,
                 'xcg': self.xcg,
                 'xac_w': self.xac_w,
