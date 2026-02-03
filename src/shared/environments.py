@@ -1,9 +1,10 @@
 import enum
 from enum import Enum
 import os
-from src.shared.domain.observability.observability_interface import IObservability
+# from src.shared.domain.observability.observability_interface import IObservability
 
 from src.shared.domain.repositories.user_repository_interface import IUserRepository
+from src.shared.domain.repositories.cm_simulation_repository_interface import ICmSimulationRepository
 
 
 class STAGE(Enum):
@@ -47,7 +48,8 @@ class Environments:
             self.s3_bucket_name = "bucket-test"
             self.region = "sa-east-1"
             self.endpoint_url = "http://localhost:8000"
-            self.dynamo_table_name = "aero_mss-table"
+            self.dynamo_user_table_name =  "aero_mss-user-table" # user table will not be used for now this is just for the tests on stage Test
+            self.dynamo_simulation_table_name= os.environ.get("DYNAMO_SIMULATION_TABLE_NAME", "aero_mss-simulation-table")
             self.dynamo_partition_key = "PK"
             self.dynamo_sort_key = "SK"
             self.cloud_front_distribution_domain = "https://d3q9q9q9q9q9q9.cloudfront.net"
@@ -56,7 +58,9 @@ class Environments:
             self.s3_bucket_name = os.environ.get("S3_BUCKET_NAME")
             self.region = os.environ.get("REGION")
             self.endpoint_url = os.environ.get("ENDPOINT_URL")
-            self.dynamo_table_name = os.environ.get("DYNAMO_TABLE_NAME")
+            self.dynamo_user_table_name =  "aero_mss-user-table" # this is just to not break the code
+            # self.dynamo_user_table_name = os.environ.get("DYNAMO_USER_TABLE_NAME") // user table will not be used for now
+            self.dynamo_simulation_table_name= os.environ.get("DYNAMO_SIMULATION_TABLE_NAME")
             self.dynamo_partition_key = os.environ.get("DYNAMO_PARTITION_KEY")
             self.dynamo_sort_key = os.environ.get("DYNAMO_SORT_KEY")
             self.cloud_front_distribution_domain = os.environ.get("CLOUD_FRONT_DISTRIBUTION_DOMAIN")
@@ -73,15 +77,26 @@ class Environments:
             raise Exception("No repository found for this stage")
 
     @staticmethod
-    def get_observability() -> IObservability:
+    def get_cm_simulation_repo() -> ICmSimulationRepository:
         if Environments.get_envs().stage == STAGE.TEST:
-            from src.shared.infra.external.observability.observability_mock import ObservabilityMock
-            return ObservabilityMock
+            from src.shared.infra.repositories.cm_simulation_repository_mock import CmSimulationRepositoryMock
+            return CmSimulationRepositoryMock
         elif Environments.get_envs().stage in [STAGE.DEV, STAGE.HOMOLOG, STAGE.PROD]:
-            from src.shared.infra.external.observability.observability_aws import ObservabilityAWS
-            return ObservabilityAWS
+            from src.shared.infra.repositories.cm_simulation_repository_dynamo import CmSimulationRepositoryDynamo
+            return CmSimulationRepositoryDynamo
         else:
-            raise Exception("No observability class found for this stage")
+            raise Exception("No repository found for this stage")
+
+    # @staticmethod
+    # def get_observability() -> IObservability:
+    #     if Environments.get_envs().stage == STAGE.TEST:
+    #         from src.shared.infra.external.observability.observability_mock import ObservabilityMock
+    #         return ObservabilityMock
+    #     elif Environments.get_envs().stage in [STAGE.DEV, STAGE.HOMOLOG, STAGE.PROD]:
+    #         from src.shared.infra.external.observability.observability_aws import ObservabilityAWS
+    #         return ObservabilityAWS
+    #     else:
+    #         raise Exception("No observability class found for this stage")
     @staticmethod
     def get_envs() -> "Environments":
         """

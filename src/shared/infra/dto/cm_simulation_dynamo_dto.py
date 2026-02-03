@@ -33,7 +33,7 @@ class CmSimulationDynamoDTO:
     @staticmethod
     def from_entity(cm_simulation: CmSimulation) -> "CmSimulationDynamoDTO":
         """
-        Parse data from CMSimulation to CMSimulationDynamoDTO
+        Parse data from CmSimulation to CmSimulationDynamoDTO
         """
         return CmSimulationDynamoDTO(
             simulation_id=cm_simulation.simulation_id,
@@ -53,7 +53,7 @@ class CmSimulationDynamoDTO:
     
     def to_dynamo(self) -> dict:
         """
-        Parse data from CMSimulationDynamoDTO to dict
+        Parse data from CmSimulationDynamoDTO to dict
         """
         return {
             "entity": "cm_simulation",
@@ -75,7 +75,7 @@ class CmSimulationDynamoDTO:
     @staticmethod
     def from_dynamo(cm_simulation_data: dict) -> "CmSimulationDynamoDTO ":
         """
-        Parse data from DynamoDB to CMSimulationDynamoDTO
+        Parse data from DynamoDB to CmSimulationDynamoDTO
         @param cm_simulation_data: dict from DynamoDB
         """
         return CmSimulationDynamoDTO(
@@ -96,7 +96,7 @@ class CmSimulationDynamoDTO:
     
     def to_entity(self) -> CmSimulation:
         """
-        Parse data from CMSimulationDynamoDTO to CMSimulation
+        Parse data from CmSimulationDynamoDTO to CmSimulation
         """
         return CmSimulation(
             simulation_id=self.simulation_id,
@@ -115,7 +115,7 @@ class CmSimulationDynamoDTO:
         )
     
     def __repr__(self):
-        return f"CMSimulationDynamoDTO(simulation_id={self.simulation_id}, xcg={self.xcg}, xac_w={self.xac_w}, sw={self.sw}, st={self.st}, cw={self.cw}, ct={self.ct}, iw={self.iw}, it={self.it}, lt={self.lt}, cm_ac={self.cm_ac}, cl_0={self.cl_0}, cl_alpha={self.cl_alpha})"
+        return f"CmSimulationDynamoDTO(simulation_id={self.simulation_id}, xcg={self.xcg}, xac_w={self.xac_w}, sw={self.sw}, st={self.st}, cw={self.cw}, ct={self.ct}, iw={self.iw}, it={self.it}, lt={self.lt}, cm_ac={self.cm_ac}, cl_0={self.cl_0}, cl_alpha={self.cl_alpha})"
     
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
