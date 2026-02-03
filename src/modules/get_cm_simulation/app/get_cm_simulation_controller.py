@@ -9,41 +9,39 @@ from src.shared.helpers.errors.usecase_errors import NoItemsFound
 from src.shared.helpers.external_interfaces.http_codes import OK, NotFound, BadRequest, InternalServerError
 
 class GetCmSimulationController:
-    def __init__(self, usecase, observability: ObservabilityAWS):
+    def __init__(self, usecase):
         self.usecase = usecase
-        self.observability = observability
 
     def __call__(self, request: IRequest) -> IResponse:
         try:
-            self.observability.log_controller_in()
             simulation_id = request.data.get('simulation_id')
-            if type(simulation_id) != str:
-                raise EntityError("simulation_id")
+            
             if request.data.get('simulation_id') is None:
                 raise MissingParameters("simulation_id")
+            
+            if type(simulation_id) != str:
+                raise WrongTypeParameter(
+                    fieldName="simulation_id",
+                    fieldTypeExpected="str",
+                    fieldTypeReceived=type(simulation_id).__name__
+                )
 
             cm_simulation = self.usecase(simulation_id)
             viewmodel = GetCmSimulationViewmodel(cm_simulation)
             response = OK(viewmodel.to_dict())
-            self.observability.log_controller_out(input=simulation_id)
             return response
 
         except NoItemsFound as err:
-            self.observability.log_exception(message=err.message)
             return NotFound(body=err.message)
 
         except MissingParameters as err:
-            self.observability.log_exception(message=err.message)
             return BadRequest(body=err.message)
 
         except WrongTypeParameter as err:
-            self.observability.log_exception(message=err.message)
             return BadRequest(body=err.message)
 
         except EntityError as err:
-            self.observability.log_exception(message=err.message)
             return BadRequest(body=err.message)
 
         except Exception as err:
-            self.observability.log_exception(message=err.args[0])
             return InternalServerError(body=err.args[0])
