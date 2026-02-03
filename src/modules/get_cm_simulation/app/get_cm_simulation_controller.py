@@ -1,7 +1,4 @@
-from src.shared.domain.entities.cm_simulation import CmSimulation
-from src.shared.infra.external.observability.observability_aws import ObservabilityAWS
 from .get_cm_simulation_viewmodel import GetCmSimulationViewmodel
-from src.modules.get_cm_simulation.app.get_cm_simulation_usecase import GetCmSimulationUsecase
 from src.shared.helpers.errors.domain_errors import EntityError
 from src.shared.helpers.errors.controller_errors import MissingParameters, WrongTypeParameter
 from src.shared.helpers.external_interfaces.external_interface import IRequest, IResponse

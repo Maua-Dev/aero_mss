@@ -1,7 +1,7 @@
 from src.shared.domain.entities.cm_simulation import CmSimulation
 from src.shared.domain.repositories.cm_simulation_repository_interface import ICmSimulationRepository
 from src.shared.helpers.errors.domain_errors import EntityError
-from src.shared.infra.external.observability.observability_aws import ObservabilityAWS
+# from src.shared.infra.external.observability.observability_aws import ObservabilityAWS
 
 class GetCmSimulationUsecase:
     def __init__(
