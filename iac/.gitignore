@@ -5,6 +5,7 @@ __pycache__
 .venv
 *.egg-info
 lambda_layer_out_temp/
+*DS_Store
 
 # CDK asset staging directory
 .cdk.staging

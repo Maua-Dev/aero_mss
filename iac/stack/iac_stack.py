@@ -44,7 +44,8 @@ class IacStack(Stack):
 
         ENVIRONMENT_VARIABLES = {
             "STAGE": stage,
-            "DYNAMO_TABLE_NAME": self.dynamo_table.table.table_name,
+            # "DYNAMO_USER_TABLE_NAME": self.dynamo_table.user_table.table_name , # user table will not be used for now
+            "DYNAMO_SIMULATION_TABLE_NAME": self.dynamo_table.simulation_table.table_name,
             "DYNAMO_PARTITION_KEY": "PK",
             "DYNAMO_SORT_KEY": "SK",
             "REGION": self.region,
@@ -54,8 +55,16 @@ class IacStack(Stack):
 
         self.lambda_stack = LambdaConstruct(self, api_gateway_resource=api_gateway_resource,
                                         environment_variables=ENVIRONMENT_VARIABLES)
+        
+        # grant read and write for user table
+        # for function in self.lambda_stack.functions_that_need_dynamo_user_table_permissions:
+        #     self.dynamo_table.user_table.grant_read_write_data(function)
 
-        for function in self.lambda_stack.functions_that_need_dynamo_permissions:
-            self.dynamo_table.table.grant_read_write_data(function)
+
+        # grant read and write for simulation table
+        for function in self.lambda_stack.functions_that_need_dynamo_simulation_table_permissions:
+            self.dynamo_table.simulation_table.grant_read_write_data(function)
+
+        
 
         

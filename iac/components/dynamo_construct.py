@@ -8,7 +8,9 @@ import os
 
 class DynamoConstruct(Construct):
     
-    table: dynamodb.Table
+    user_table: dynamodb.Table
+    simulation_table: dynamodb.Table
+
 
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
@@ -26,8 +28,26 @@ class DynamoConstruct(Construct):
             
         removal_policy = RemovalPolicy.RETAIN if stage=="PROD" else RemovalPolicy.DESTROY
 
-        self.table = dynamodb.Table(
-            self, "AeroMss_DynamoDB_Table",
+        # self.user_table = dynamodb.Table(
+        #     self, "AeroMss_DynamoDB_User_Table",
+        #     partition_key=dynamodb.Attribute(
+        #         name="PK",
+        #         type=dynamodb.AttributeType.STRING
+        #     ),
+        #     sort_key=dynamodb.Attribute(
+        #         name="SK",
+        #         type=dynamodb.AttributeType.STRING
+        #     ), 
+        #     billing_mode=dynamodb.BillingMode.PAY_PER_REQUEST,
+        #     removal_policy=removal_policy,
+
+        #     table_name=f"AeroMss_DynamoDB_User_Table-{stage.upper()}",
+        #     point_in_time_recovery=True if stage=="PROD" else False
+        # )
+
+        self.simulation_table= dynamodb.Table(
+            self,
+            "AeroMss_DynamoDB_Simulation_Table",
             partition_key=dynamodb.Attribute(
                 name="PK",
                 type=dynamodb.AttributeType.STRING
@@ -35,11 +55,11 @@ class DynamoConstruct(Construct):
             sort_key=dynamodb.Attribute(
                 name="SK",
                 type=dynamodb.AttributeType.STRING
-            ), 
+            ),
             billing_mode=dynamodb.BillingMode.PAY_PER_REQUEST,
             removal_policy=removal_policy,
 
-            table_name=f"AeroMss_DynamoDB_Table-{stage.upper()}",
+            table_name=f"AeroMss_DynamoDB_Simulation_Table-{stage.upper()}",
             point_in_time_recovery=True if stage=="PROD" else False
         )
         

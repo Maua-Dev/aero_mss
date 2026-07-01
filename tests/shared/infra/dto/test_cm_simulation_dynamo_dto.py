@@ -3,7 +3,7 @@ from src.shared.infra.repositories.cm_simulation_repository_mock import CmSimula
 from src.shared.domain.entities.cm_simulation import CmSimulation
 import uuid
 
-class Test_CMSimulationDynamoDto:
+class Test_CmSimulationDynamoDto:
     def test_from_entity(self):
         repo = CmSimulationRepositoryMock()
         simulation_id_esperado = repo.simulations[0].simulation_id  

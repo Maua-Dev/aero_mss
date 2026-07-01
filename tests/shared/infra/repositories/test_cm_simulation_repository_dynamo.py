@@ -1,15 +1,15 @@
 import os
 
 import pytest
-from src.shared.infra.repositories.cm_simulation_repository_dynamo import CMSimulationRepositoryDynamo
+from src.shared.infra.repositories.cm_simulation_repository_dynamo import CmSimulationRepositoryDynamo
 from src.shared.infra.repositories.cm_simulation_repository_mock import CmSimulationRepositoryMock
 
-class Test_CMSimulationRepositoryDynamo:
+class Test_CmSimulationRepositoryDynamo:
     @pytest.mark.skip(reason="Needs dynamoDB")
     def test_create_cm_simulation(self):
         os.environ["STAGE"] = "TEST"
 
-        cm_simulation_repository = CMSimulationRepositoryDynamo()
+        cm_simulation_repository = CmSimulationRepositoryDynamo()
         cm_simulation_repository_mock = CmSimulationRepositoryMock()
         resp = cm_simulation_repository.create_cm_simulation(cm_simulation_repository_mock.simulations[0])
 
@@ -20,7 +20,7 @@ class Test_CMSimulationRepositoryDynamo:
     def test_get_cm_simulation(self):
         os.environ["STAGE"] = "TEST"
 
-        cm_simulation_repository = CMSimulationRepositoryDynamo()
+        cm_simulation_repository = CmSimulationRepositoryDynamo()
         cm_simulation_repository_mock = CmSimulationRepositoryMock()
         resp = cm_simulation_repository.get_cm_simulation(cm_simulation_repository_mock.simulations[0].simulation_id)
 
@@ -31,7 +31,7 @@ class Test_CMSimulationRepositoryDynamo:
     def test_delete_cm_simulation(self):
         os.environ["STAGE"] = "TEST"
 
-        cm_simulation_repository = CMSimulationRepositoryDynamo()
+        cm_simulation_repository = CmSimulationRepositoryDynamo()
         cm_simulation_repository_mock = CmSimulationRepositoryMock()
         resp = cm_simulation_repository.delete_cm_simulation(cm_simulation_repository_mock.simulations[0].simulation_id)
 
@@ -42,7 +42,7 @@ class Test_CMSimulationRepositoryDynamo:
     def test_get_all_cm_simulation(self):
         os.environ["STAGE"] = "TEST"
 
-        cm_simulation_repository = CMSimulationRepositoryDynamo()
+        cm_simulation_repository = CmSimulationRepositoryDynamo()
         cm_simulation_repository_mock = CmSimulationRepositoryMock()
         resp = cm_simulation_repository.get_all_cm_simulations()
 
@@ -52,7 +52,7 @@ class Test_CMSimulationRepositoryDynamo:
     def test_update_cm_simulation(self):
         os.environ["STAGE"] = "TEST"
 
-        cm_simulation_repository = CMSimulationRepositoryDynamo()
+        cm_simulation_repository = CmSimulationRepositoryDynamo()
         cm_simulation_repository_mock = CmSimulationRepositoryMock()
 
         original_simulation = cm_simulation_repository_mock.simulations[0]
@@ -71,7 +71,7 @@ class Test_CMSimulationRepositoryDynamo:
     def test_get_cm_simulation_counter(self):
         os.environ["STAGE"] = "TEST"
 
-        cm_simulation_repository = CMSimulationRepositoryDynamo()
+        cm_simulation_repository = CmSimulationRepositoryDynamo()
         resp = cm_simulation_repository.get_cm_simulation_counter()
 
         assert isinstance(resp, int)
@@ -81,7 +81,7 @@ class Test_CMSimulationRepositoryDynamo:
     def test_update_cm_simulation_counter(self):
         os.environ["STAGE"] = "TEST"
 
-        cm_simulation_repository = CMSimulationRepositoryDynamo()
+        cm_simulation_repository = CmSimulationRepositoryDynamo()
         initial_counter = cm_simulation_repository.get_cm_simulation_counter()
         resp = cm_simulation_repository.update_cm_simulation_counter()
 
